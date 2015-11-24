@@ -1,0 +1,265 @@
+\documentclass[12pt,draft]{article}
+\usepackage[couleur]{dipneuste}%ct%thm%couleur%draft%minimal
+
+\geometry{a4paper, hmargin=.15 \paperwidth, vmargin=.12 \paperheight}
+
+\setcounter{secnumdepth}{5}
+\renewcommand{\theparagraph}{\bf\color{DarkBlue}(\arabic{section}.\arabic{subsection}.\alph{paragraph})}
+
+\renewcommand{\Re}{\texttt{Re}}
+\renewcommand{\Im}{\texttt{Im}}
+
+\begin{document}
+\section{Intégrabilité}
+\subsection{Notations}
+\paragraph*{Données.}
+Soit $M$ une variété réelle lisse ou analytique de dimension $2n$ munie d'une structure complexe $I$ intégrable. On dispose au voisinage d'un point $O \in M$ de coordonnées réelles $x^i$ centrées en $O$. On notera $u^a = x^a + ix^{a+n}$	.
+
+On introduit les objets suivants~:
+\paragraph{} Les différents faisceaux naturels, (on notera $\Gamma(U,\Ff)$ les sections de $\Ff$ sur l'ouvert $U$)~:
+\begin{itemize}
+\item Les faisceaux constants $\underline{\R}$, $\underline{\C}$. Dont les sections sont les fonctions localement constantes à valeurs dans $\R$, resp. $\C$.
+\item Le faisceau structural (lisse) $\Cc^\infty$ ou $\Cc^\infty_M$, dont les sections sont les fonctions lisses à valeurs complexes.
+\item Le faisceau structural analytique $\Cc^\omega$ ou $\Cc^\omega_M$, dont les sections sont les fonctions analytiques à valeurs complexes.
+\end{itemize}
+\paragraph{} Le fibré tangent $T_\R M$ à $M$, c'est de manière naturelle un faisceau de $\R$-espaces vectoriels de dimensions $2n$. Une base locale des sections est donnée par la famille~:
+\[
+\dpp{}{x^1} , \dpp{}{x^2} , \cdots , \dpp{}{x^{2n}}
+\]
+On prend comme définition qu'un champ de vecteur est une dérivation réelle sur l'anneau des fonctions réelles sur $M$.
+\paragraph{} Son complexifié $T_\C M := T_\R M \otimes_\R \C$ (fibre à fibre ou, ce qui revient au même le produit tensoriel au dessus de faisceau constant de corps $\underline{\R}$ avec le faisceau de $\underline{\R}$-espaces vectoriels $\underline{\C}$).
+Une base locale des sections est donnée par la famille précédente ou par~:
+\[
+\dpp{}{u^1} , \dpp{}{u^2} , \cdots , \dpp{}{u^{n}} , \dpp{}{\bar{u}^1} , \dpp{}{\bar{u}^2} , \cdots , \dpp{}{\bar{u}^{n}}
+\]
+On a la décomposition spectrale (fibre à fibres ou en tant que faisceaux)
+\[
+T_\C M = T^{1,0}M \oplus T^{0,1}M
+\]
+qui fait apparaître
+\begin{itemize}
+\item L'espace propre pour la valeur propre $i$ de l'opérateur $I$~: $T^{1,0}M$. Fibré vectoriel complexe de dimension $n$ dont les sections sont appelés \textit{champs de vecteurs $I$-holomorphes}.\\
+Il s'identifie naturellement au fibré tangent réel par l'application partie réelle $T^{1,0}M~\rightarrow~T_\R M$ ; on le notera par la suite $TM$.
+\item L'espace propre pour la valeur propre $-i$ de l'opérateur $I$~: $T^{0,1}M$. Fibré vectoriel complexe de dimension $n$ dont les sections sont appelés \textit{champs de vecteurs \mbox{($I$-)antiholomorphes}}.
+\item Une opération $X \mapsto \bar{X}$ sur $T_\C M = T_\R M \otimes_\R \C$ qui échange $T^{1,0}M$ et $T^{0,1}M$.
+\end{itemize}
+\paragraph{} L'espace des $1$-formes réelles $\Omega_{\R,M} := \Hom_\R(T_\R M,\R)$.\\
+Si $K$ est un tenseur $T_\R M \rightarrow T_\R M$, alors $K$ agit naturellement sur $\Omega_{\R,M}$ par composition à droite, on le notera toujours $K$.
+\paragraph{} Son complexifié $\Omega_{\C,M} := \Hom_\C(T_\C M,\C) = \Hom_\R(T_\R M,\C)$. On a la décomposition obtenue par dualité~:
+\[
+\Omega_{\C,M} = \Omega^{0,1} \oplus \Omega^{1,0}
+\]
+\begin{itemize}
+\item $\Omega^{1,0} := (T^{0,1}M)^\bot$ faisceau des formes qui s'annulent sur les $(0,1)$-vecteurs. Fibré vectoriel complexe de dimension $n$.\\
+C'est également l'espace des formes propres de valeur propre $i$ pour l’opérateur $I$.
+\item $\Omega^{0,1} := (T^{1,0}M)^\bot$ faisceau des formes qui s'annulent sur les $(1,0)$-vecteurs. Fibré vectoriel complexe de dimension $n$.\\
+C'est également l'espace des formes propres de valeur propre $-i$ pour l'opérateur $I$.
+\end{itemize}
+\paragraph{} On définit les $m$-formes à valeur complexes par~:
+\[
+\Omega^m := \bigwedge^m \Omega_{\C,M}
+\]
+C'est le faisceau des formes $m$-linéaires alternées sur $TM$ à valeurs complexes. On remarquera que $\Omega^0 = \Cc^\infty_M$ faisceau des fonctions complexes lisses.
+\paragraph{ \label{forme_type}} Enfin, on définit les $(p,q)$-formes de la façon suivante~:
+\[
+\Omega^{p,q} : = \bigwedge^p \Omega^{1,0}  \wedge \bigwedge^q \Omega^{0,1} \; \subset \; \Omega^m
+\]
+Si on pose $m=p+q$. C'est également le faisceau des formes $m$-linéaires alternées sur $T_\C M$ qui s'annulent sur les $m$-uplets de vecteurs $(X_1,\cdots X_{m})$ dès lors que
+\begin{itemize}
+\item au moins $p+1$ des $X_i$ sont de type $(1,0)$
+\item ou au moins $q+1$ des $X_i$ sont de type $(0,1)$.
+\end{itemize}
+On a alors la décomposition
+\[
+\Omega^m = \bigoplus_{p+q = m} \Omega^{p,q}
+\]
+\paragraph{} Les opérateurs $\dd : \Omega^k \rightarrow \Omega^{k+1}$ en définissant $(\dd \theta)(X)$ pour $\theta \in  \Omega^k$, $X=(X_1,X_2, \cdots , X_{k+1})$ où les $X_i \in TM$ par~:
+\[
+\sum_{1 \leq j \leq k} (−1)^j X_j\left(\theta\left(\check{X}^j\right)\right)+
+\sum_{1 \leq j < i \leq k} (−1)^{j+i} \theta\left([X_j,X_i ], \check{\check{X}}^{j,i} \right)
+\]
+\begin{itemize}
+\item Dans le cas $k=0$, la deuxième partie de la formule est vide, et on retrouve l’opération $f \mapsto X(f)$, ainsi $(\dd f)(X) = X(f)$.
+\item Cette définition intrinsèque coïncide dans des coordonnées avec
+\[
+\dd \theta = \dd \left(\theta_K \dd x^K\right) = \dpp{\theta_K}{x^i}\dd x^i \wedge \dd x^K
+\]
+\item L’opérateur $d$ sur $ \Omega^k$ satisfait la règle de \textsc{Leibnitz} : 
+\[
+\dd\,(\alpha \wedge \beta) = \dd \alpha \wedge \beta +(-1)^{\deg(\alpha)} \alpha \wedge \dd \beta
+\]
+\end{itemize}
+\paragraph{} On dispose naturellement des projections
+\[
+\pi^{p,q} : \Omega^{p+q} \longrightarrow \Omega^{p,q}
+\]
+On peut dès lors définir les opérateurs $\partial$ et $\dbarre$ comme
+\begin{itemize}
+\item la partie de type $(p+1,q)$ de la différentielle d'une $(p,q)$-forme : $\partial = \pi^{p+1,q} \circ \dd_{\,\vert \Omega^{p,q}}$
+\item la partie de type $(p,q+1)$ de la différentielle d'une $(p,q)$-forme : $\dbarre = \pi^{p,q+1} \circ \dd_{\,\vert \Omega^{p,q}}$
+\end{itemize}
+\paragraph{} On définit $\Oo_M$ (ou $\Oo_{(M,I)}$ si il y a ambiguïté) le faisceau des fonctions holomorphes sur $M$ à valeurs complexes comme le noyau de l’opérateur $\dbarre : \Cc^\infty_M \rightarrow \Omega^1$. C'est automatiquement un sous-faisceau de $\Cc^\omega_M$ (conséquence de la formule de \textsc{Cauchy}).\\
+De même on définit $\Oo_M(E)$ pour $E \rightarrow M$ fibré vectoriel holomorphe, comme le faisceau des sections holomorphes de $E$.
+\paragraph{\label{integrabilité}} La structure presque complexe $I$ est dite \emph{intégrable} si l'une des conditions équivalentes est satisfaite~:
+\begin{enumerate}[($i$)]
+\item Le tenseur de \textsc{Nijenhuis} défini par~: $N_I(X,Y) := [ I X , I Y ] - I [ X , I Y ] - I [ I X , Y ] + I^2 [ X , Y ]$ est identiquement nul.
+\item Pour tout champ de vecteur complexes $X,Y$ sur $M$ satisfaisant $I X=iX$ et $I Y=iY$, le crochet de \textsc{Lie} $[X,Y]$ satisfait également $I[X,Y] = i[X,Y]$
+\item L'espace tangent $I$-holomorphe $TM = T^{1,0}M \subset T_\C$  est stable par crochet de Lie. C'est-à-dire $[TM,TM] \subseteq TM$
+\item Pour toute famille $(\omega^\alpha)_\alpha$ de $(1,0)_I$-formes sur $M$ de rang $n$, et pour tout $\alpha$, $\dd \omega^\alpha = \theta^\alpha_\beta \wedge \omega^\beta$ pour des $1$-formes $\theta^\alpha_\beta$.
+\item Le dual de l'espace tangent $I$-holomorphe $\Omega^{1,0} \subseteq \Omega^1$ satisfait $\dd \Omega^{1,0} \subseteq \Omega^1 \wedge \Omega^{1,0}_M$.
+\item $\dd = \partial + \dbarre$, ce qui signifie que la différentielle d'une $(p,q)$-forme est une somme de $(p+1,q)$ et $(p,q+1)$-formes.
+\item $\dd  = \partial + \dbarre$ sur $\Omega^1_M$.
+\item Le diagramme suivant commute~:
+\begin{center}\begin{tikzpicture}
+\matrix (m) [matrix of math nodes, row sep=2em,
+column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+{ \Omega^{0,1} & \Omega^1 & \Omega^{1,0} \\
+  \Omega^{0,2} & \Omega^2 & \Omega^{2,0} \\ };
+\path[->, font=\scriptsize]
+(m-1-2) edge node[auto] {$\pi^{0,1}$} (m-1-1)
+(m-1-2) edge node[auto] {$\pi^{1,0}$} (m-1-3)
+(m-2-2) edge node[auto] {$\pi^{0,2}$} (m-2-1)
+(m-2-2) edge node[auto] {$\pi^{2,0}$} (m-2-3)
+(m-1-1) edge node[auto] {$\dbarre$} (m-2-1)
+(m-1-2) edge node[auto] {$d$} (m-2-2)
+(m-1-3) edge node[auto] {$\partial$} (m-2-3);
+\end{tikzpicture}\end{center}
+Cette propriété d'intégrabilité est détaillé en appendice \autoref{preuveintegrabilite}.
+\item $\partial^2 f = 0$ pour tout $f \in\Gamma(M,\Cc^\infty)$.
+\end{enumerate}
+
+\paragraph*{\todo}
+\begin{itemize}
+\item Anti-symétrisation
+\item Notation tensorielle
+\item $\dd$ (définition tensorielle)
+\end{itemize}
+
+\paragraph*{Formulaire.}
+\begin{align*}
+\dd f & = \dpp{f}{z}\ \dd z + \dpp{f}{\bar{z}}\ \overline{\dd z} \\
+\dbarre f & = \dpp{f}{z}\ \dbarre z + \dpp{f}{\bar{z}}\ \overline{\partial z} \\
+\partial f & = \dpp{f}{z}\ \partial z + \dpp{f}{\bar{z}}\ \overline{\dbarre z}
+\end{align*}
+
+
+\section{Espace des twisteurs d'une variété hyperkahlérienne}
+\subsection{Notations}
+\cite{Hitchin-Karlhede} \paragraph*{}Le but de cette partie est d'appliquer les résultats précédents à $M=Z :=X \times \Pro^1$ l'espace des twisteurs d'une variété hyperkählérienne $(X,(I,J,K),g)$ que l'on supposera construite à partir d'une variété symplectique holomorphe $(X,I,\sigma)$ et de la donnée d'une classe de Kähler $\omega_I$ qui détermine d'après le théorème de Yau une unique métrique Ricci-plate $g$. 
+
+\paragraph*{}$Z$ est de dimension réelle $\dim_\R(X)+2 = 4n+2$. On notera $N = 2n+1$, ainsi $\dim_\R(Z) = 2N$.
+
+On utilisera les indices suivants~:
+\begin{itemize}
+\item Les indices $\alpha,\beta,\gamma,\delta$ vont varier entre $1$ et $2n$ (soit $2n$ indices). Ils correspondront aux tenseurs sur $X$.
+\item Les indices $a,b,c,d$ vont varier entre $0$ (sur $\Pro^1$) et $2n$ (soit $N$ indices). Ils correspondront aux tenseurs sur $Z$.
+\item Les indices $p,q,r,s$ vont varier entre $1$ et $4n+1$ en évitant $2n+1$ (soit $4n$ indices). Ils correspondront aux tenseurs réels sur $X$. Tout indice $p$ est de la forme $\alpha$ ou $\alpha+N$.
+\item Les indices $i,j,k,l$ vont varier entre $0$ et $4n+1$ (soit $2N$ indices). Ils correspondront aux tenseurs réels sur $Z$. Les indices $i=0$ et $i=N$ sont particuliers et correspondent aux tenseurs provenant de $\Pro^1$. Tout indice $i$ est de la forme $a$ ou $a+N$.
+\end{itemize}
+
+\paragraph*{Structure presque-complexe.}La structure presque-complexe $\mathbb{I}$ sur $Z = X \times \Pro^1$ est donnée par~:
+\[
+\mathbb{I} = \left(
+\dfrac{1-\zeta \bar{\zeta}}{1+\zeta \bar{\zeta}}I + \dfrac{\zeta + \bar{\zeta}}{1+\zeta \bar{\zeta}}J + \dfrac{i(\zeta - \bar{\zeta})}{1+\zeta \bar{\zeta}}K \; , \; I_0
+\right)
+\]
+
+
+
+\subsection{Les structures complexes $J$ et $K$ sur $X$}
+Les trois structures complexes $I,J,K$ d'une variété hyperkählérienne pointée, doivent satisfaire les relations "quaternioniques". En particulier $K = IJ$ et $IJ = -JI$.
+
+On cherche donc sur $(X,I)$ une structure complexe $J$ satisfaisant la dernière relation.
+
+Sur un ouvert $U$ de $X$ on a des coordonnées complexes $u^\tau$ qui se décomposent en $4n$ coordonnées réelles $x^p$ (par exemple $u^\tau = x^\tau + i x^{\tau+2n}$) qui induisent une trivialisation locale du fibré tangent \[
+T(X_\text{diff})_{\vert U} \cong \bigoplus_p \R \dpp{}{x^p}
+\]
+Dans cette base la structure $I$ est donnée par la matrice
+\[
+\begin{pmatrix}
+0 & -\Id_{2n} \\ 
+\Id_{2n} & 0
+\end{pmatrix} 
+\]
+On va chercher $J$ parmi les matrices qui vérifient $IJ=-JI$ et qui satisfont
+\begin{equation}\label{symplecticJ}
+\sigma(X,Y) = g(JX,Y) + ig(IJX,Y) = g^\C((1+iI)JX,Y)
+\end{equation}
+où $\sigma$ est la forme symplectique sur $(X,I)$ et $g$ est la métrique Ricci-plate obtenue par le théorème de \textsc{Yau}.
+
+Posons $A = J + iK$ \label{A}, alors l'équation précédente se réécrit
+\[
+\sigma(X,Y) = g(AX,Y)
+\]
+Ce qui donne en notation tensorielle
+\[
+\sigma_{pq} = g_{rq}A^r_p
+\]
+On peut dès lors inverser $g$ pour obtenir $A_p^q = \sigma_{pr}g^{rq}$. On peut montrer facilement les propriétés suivantes vérifiées par le tenseur $A$~:
+\begin{enumerate}[(\itshape i\,\upshape )]
+\item $\Re(A) = J$ et $\Im(A) = K$.\label{eqJ}
+\item $A = (1 + iI)J$ et donc $(1-iI)A = 0$. \label{Aproj}
+\item $A^2  = 0$
+\item $AI =  -IA$
+\item $A \in \Oo(g) \otimes \C $\label{Aorthoplex} \marginpar{interpréter \ref{Aorthoplex}}
+\item $\nabla A = 0$.
+\end{enumerate}
+Le tenseur $A$ est parallèle car $J$ et $K$ le sont. Ce qui s'écrit en notation tensorielle
+\[
+\dpp{A^p_q}{x^r} + \Gamma^p_{sr} A^s_q = 0
+\]
+où les $\Gamma^p_{qr}$ sont les symboles de \textsc{Christoffel} associés à la métrique $g$.
+
+\subsubsection{Projections et espaces propres holomorphes}
+On notera par la suite $P$ ou $P(\zeta)$ si le contexte l'exige, la projection sur l'espace propre $I_\zeta$-holomorphe
+\begin{equation}
+P(\zeta) = \demi \left( 1 - i I_\zeta \right) : T^\C M \rightarrow T^\C M
+\end{equation} 
+Le projecteur associé sur l'espace propre antiholomorphe est $\bar{P}$.
+
+Il est à noter que $P(0) = \demi(1-iI)$ et $P(1) = \demi(1-iJ)$.
+
+De plus on a la propriété d'adjonction suivante qui résulte de l'orthogonalité des structures $I_\zeta$ par rapport à $g$:
+\begin{equation}\label{Padjoint}
+\forall X,Y \quad g(PX,Y ) = g(X,\bar{P}Y)
+\end{equation}
+
+\paragraph*{Remarque : Critère métrique d'intégrabilité}
+L'intégrabilité de la structure $I_\zeta$ équivaut à
+\begin{equation}
+\forall X , \forall Y, \forall Z , \quad  g([PX,PY],PZ) = 0
+\end{equation}
+
+\subsection{Structure presque-complexe sur l'espace des twisteurs}
+En regroupant ce qu'on a obtenu, on peut écrire $\mathbb{I}$ de la façon suivante~:
+\[
+\mathbb{I}_i^j = \left\lbrace
+\begin{array}{cr}
+\dfrac{1-\zeta \bar{\zeta}}{1+\zeta \bar{\zeta}} \ I_i^j + \dfrac{\zeta + \bar{\zeta}}{1+\zeta \bar{\zeta}}\ \Re(A_i^j) + i\dfrac{\zeta - \bar{\zeta}}{1+\zeta \bar{\zeta}}\ \Im(A_i^j)  & i,j \notin \{0,N\}\\ 
+1 & (i,j) = (0,N)\\
+-1 & (i,j) = (N,0)\\
+0 & \text{sinon}
+\end{array}\right.
+\]
+où $\zeta = x^0+ix^N$.
+Donc la structure complexe $\mathbb{I}$ est la partie réelle du tenseur suivant que l'on notera $\Upsilon$ avec
+\[
+\Upsilon_p^q = \dfrac{1-\zeta \bar{\zeta}}{1+\zeta \bar{\zeta}}\ I_p^q + \dfrac{2\zeta}{1+\zeta \bar{\zeta}}\ A_p^q
+\]
+
+\subsection{$1$-formes holomorphes}
+\cite{Hitchin-Karlhede} On a l'application suivante
+\begin{equation}
+\begin{pmatrix}
+\Omega^1_M & \longrightarrow & \Omega^1_M \\ 
+\theta &  \mapsto &  (1 + \zeta K) \theta
+\end{pmatrix} 
+\end{equation}
+qui envoie $\Omega^{1,0}_0$ sur $\Omega^{1,0}_\zeta$, c'est-à-dire qui envoie les formes $I$-holomorphes sur des formes $I_\zeta$-holomorphes. L'application induite entre ces deux espaces est de plus bijective pour tout $\zeta$ (le cas $\zeta = \pm i$ est géré en remarquant que $\theta = P(0)^*\theta$ et que le rang de $P(0)(1+\zeta  K)$ ne dépend pas de $\zeta$).
+
+\appendix
+
+\bibliographystyle{amsalpha}
+\bibliography{Demailly.bib}
+
+\end{document}

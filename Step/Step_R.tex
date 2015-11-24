@@ -1,0 +1,280 @@
+\documentclass[11pt,draft,twocolumn,makeidx]{amsart}
+\usepackage[couleur]{amsdip}%ct%thm%couleur%draft%minimal
+
+\geometry{a4paper, hmargin=.07 \paperwidth, vmargin=.10 \paperheight}
+
+\setlength{\columnsep}{1cm}
+
+%\setcounter{secnumdepth}{5}
+%\renewcommand{\thesubsection}{\bf \arabic{section}.\arabic{subsection}}
+\numberwithin{equation}{subsection}
+%\renewcommand{\theequation}{\thesubsection.\arabic{equation}}
+
+
+\renewcommand{\Re}{\texttt{Re}}
+\renewcommand{\Im}{\texttt{Im}}
+
+\title{Coordonnées holomorphes approchées sur l'espace des twisteurs d'une variété hyperkählérienne}
+
+\begin{document}
+%\maketitle
+
+\section{Coordonnées holomorphes approchées} Soit $O \in X$
+
+\subsection{} Soient $x^1,y^1,x^2,y^2$ des fonctions définies sur un voisinage de $O$ à valeur dans $\R^n$ qui fournissent un système de coordonnées réelles telles que dans la base adaptée l'opérateur $I$ s'écrive
+\begin{equation}\label{I_holomorphic}
+\left[
+\begin{array}{c|c}
+ \begin{matrix}
+ & 1 \\ 
+-1 & 
+\end{matrix} & 0 \\ \hline
+0 & \begin{matrix} 
+ & -1 \\ 
+1 & 
+\end{matrix} 
+\end{array}
+\right]
+\end{equation}
+où les $1$ sont des blocs identité de taille $n$.
+
+Cela revient à dire que les fonctions $v = x^1 + i y^1$ et $w = x^2 - iy^2$ donnent une carte holomorphe au voisinage de $O$.
+\subsection{A finir et éclaircir} Pourquoi on peut choisir les coordonnées normales sans avoir d'impact sur la structure complexe \? {\tiny Comme $g$ est Kählérienne pour $I$ (où ce qui revient au même $I$ est parallèle pour $g$) on peut supposer que les coordonnées ainsi fournies sont normales.
+
+il faut remarquer que si un système de coordonnées $x^i : X \rightarrow \R$ vérifie $\nabla_{\partial_i}\partial_i= 0$, alors les courbes images des axes de coordonnées sont des géodésiques et donc les coordonnées sont normales en $O$. \marginpar{blablabla}
+
+Un changement de coordonnées du type
+\begin{equation}
+\hat{x} = x + 1/2 \Gamma x x + O(x^3)
+\end{equation}
+où $\Gamma$ sont les symboles de Christoffel ou y ressemblent.}
+
+\subsection{}On sait que $IJ=-JI$ et donc on en déduit qu'en $O$ la matrice de $J$ est semblable à
+\begin{equation}\label{J}
+\left[
+\begin{array}{c|c}
+ 0 &  \begin{matrix}
+ \phantom{-}1 &  \\ 
+ & \phantom{-}1
+\end{matrix} \\ \hline
+ \begin{matrix} 
+-1 &  \\ 
+ & -1
+\end{matrix}  & 0 
+\end{array}
+\right]
+\end{equation} via une matrice de passage qui commute avec $I$.
+Quitte à faire ce changement linéaire (ne dépendant pas du point $x$) de coordonnées en $O$, on peut supposer que $J(O)$ a la forme \eqref{J}  et de plus on a
+\begin{equation}
+K(O) = 
+\left[
+\begin{array}{c|c}
+ 0 &  \begin{matrix}
+ & \phantom{-}1  \\ 
+ -1 & 
+\end{matrix} \\ \hline
+\begin{matrix}
+ & \phantom{-}1  \\ 
+ -1 & 
+\end{matrix}  & 0 
+\end{array}
+\right]
+\end{equation}
+dans la base $(D_{x^1}\vert_O, D_{y^1}\vert_O, D_{x^2}\vert_O, D_{y^2}\vert_O)$
+\begin{itemize}
+\item Les coordonnées ainsi obtenues sont toujours normales en $O$. \label{stays_normal}
+En effet, il suffit de calculer les
+\[
+\nabla_{\frac{\partial}{\partial x'^i}} \dpp{}{x'^j} = R_i^l \nabla_{\frac{\partial}{\partial x^l}} \left(R^k_j\dpp{}{x^k}\right)
+\]
+où $x'^i = (R^{-1})^i_j x^j$ (changement de coordonnées linéaire constant). Or
+\[
+\nabla_{\frac{\partial}{\partial x^l}} R^k_j = \dpp{R^k_j}{x^l} = 0
+\]
+Ce qui montre bien que les coordonnées $x'$ sont effectivement normales.
+\item Comme la matrice de passage commute avec $I$, les coordonnées ainsi obtenues satisfont toujours  \eqref{I_holomorphic} en tout point $x\in X$.
+\end{itemize}
+\subsection{} 
+Fixons $\zeta \in \Pro^1$, en $O$ la structure complexe $I_\zeta(O)$ s'écrit
+\begin{equation}
+\dfrac{1}{1+\zeta\bar\zeta}\begin{bmatrix}
+0 & 1-\zeta\bar\zeta & \zeta + \bar\zeta & i(\zeta - \bar\zeta) \\ 
+ \zeta\bar\zeta - 1 & 0  & i(\bar\zeta - \zeta) & \zeta + \bar\zeta \\ 
+ -(\zeta + \bar\zeta)&  i(\zeta - \bar\zeta) & 0  &\zeta\bar\zeta -1  \\ 
+ i(\bar\zeta - \zeta) & -(\zeta + \bar\zeta)  &1-\zeta\bar\zeta  & 0
+\end{bmatrix} 
+\end{equation}
+\subsection{} On peut faire un changement linéaire (ne dépendant pas de $x$) de coordonnées pour obtenir des fonctions $\hat{x}^\epsilon = \hat{x}^\epsilon(\zeta), \hat{y}^\epsilon = \hat{y}^\epsilon(\zeta)$, $\epsilon = 1,2$ telles que dans la base adaptée, l'opérateur $I_\zeta(O)$ s'écrive :
+\begin{equation}\label{Izeta}
+\left[
+\begin{array}{c|c}
+ \begin{matrix}
+ & 1 \\ 
+-1 & 
+\end{matrix} & 0 \\ \hline
+0 & \begin{matrix} 
+ & -1 \\ 
+1 & 
+\end{matrix} 
+\end{array}
+\right]
+\end{equation}
+
+Si l'on pose $\zeta = a + ib$, $a,b \in \R$, alors la matrice de passage et son inverse peuvent s'écrire
+\begin{equation}
+\dfrac{1}{\sqrt{1+\zeta\bar\zeta}}\begin{bmatrix}
+1 & 0 & -b & -a \\
+0 & 1 & a & -b \\
+b & -a & 1 & 0 \\
+a & b & 0 & 1
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\dfrac{1}{\sqrt{1+\zeta\bar\zeta}}\begin{bmatrix}
+1 & 0 & b & a \\
+0 & 1 & -a & b \\
+-b & a & 1 & 0 \\
+-a & -b & 0 & 1
+\end{bmatrix}
+\end{equation}
+
+
+\subsection{\label{normal}} Les coordonnées ainsi obtenues sont normales pour $g$ par le même argument que précédemment ({\ref{stays_normal}}). Elles sont données par
+\begin{align*}
+\hat{x}^1 & =   x^1 + bx^2  +ay^2\\
+\hat{y}^1 & = y^1 -ax^2 + by^2\\
+\hat{x}^2 & = -bx^1 + ay^1 + x^2\\
+\hat{y}^2 & =-ax^1 - by^1 + y^2
+\end{align*}
+\subsection{\label{holomorphe_approche}} On pose $\hat{v} = \hat{v}(\zeta) = \hat{x}^1 + i \hat{y}^1$ et $\hat{w} = \hat{w}(\zeta) = \hat{x}^2 - i \hat{y}^2$ les fonctions complexes associées. Les fonctions $\hat{v},\hat{w}$ ainsi obtenues sont une approximation de fonctions holomorphes (résulte immédiatement de \eqref{Izeta}).
+On a
+\begin{align}\label{coordapprox}
+\hat{v}  &= v - i\zeta \bar{w}\\
+\hat{w}  &= w + i\zeta \bar{v}
+\end{align}
+\subsection{} Les deux points précédents (\autoref{holomorphe_approche} et \autoref{normal}) entraînent que les fonctions $\hat{v},\hat{w}$ sont une approximation de fonctions holomorphes à l'ordre $2$~:
+\[
+\dbarre \hat{v} , \dbarre \hat{w}  \in  O(v\bar{v} + w\bar{w})
+\]
+\subsection{Symétrie de l'espace des twisteurs} La structure réelle sur l'espace des twisteurs est donnée en $\zeta$ par l'antipode
+\begin{equation}
+\zeta \mapsto -\dfrac{1}{\bar{\zeta}}
+\end{equation}
+La structure complexe satisfait donc la propriété suivante
+\begin{equation}
+I_{-1/\bar{\zeta}} = -I_\zeta
+\end{equation}
+
+Ainsi, on sait que pour tout $\zeta$, $\hat{v}(\zeta)$ est holomorphe (approchée) sur $X_\zeta = (X,I_\zeta)$, on en déduit
+\begin{itemize}
+\item que $v + \frac{i}{\bar\zeta}\bar{w}$  est holomorphe (approchée) sur   $X_{-1/\bar\zeta} = (X,-I_\zeta)$
+\item donc $v + \frac{i}{\bar\zeta}\bar{w}$  est antiholomorphe (approchée) sur   $X_\zeta = (X,I_\zeta)$
+\item d'où en conjuguant, $\bar{v} -  \frac{i}{\zeta}w$ est holomorphe (approchée) sur  $X_\zeta$
+\item ce qui donne enfin, en multipliant par $i\zeta$, que $w + i\zeta \bar{v}$  est holomorphe (approchée) sur  $X_\zeta$   
+\end{itemize}
+Ce qui peut se résumer par
+\begin{equation}
+i\zeta\left(\overline{\hat{v}\left(-1/\bar{\zeta} \right)}\right) = \hat{w}(\zeta)
+\end{equation}
+c'est-à-dire, à un facteur $i\zeta$ près, les deux coordonnées sont échangées par la structure réelle. Est-ce une manifestation du $\Oo(\pm 1 )$ \?
+
+\section{Approximation à l'ordre supérieur par la méthode de Demailly}
+\subsection{} On peut appliquer la méthode de Demailly \cite{Demailly} aux fonctions précédentes. On peut obtenir des coordonnées holomorphes approchées à l'ordre $3$ ; mais la dépendance en $\zeta$ n'a plus de raison d'être holomorphe. 
+
+Plus précisément, à $\zeta$ fixé, on sait que $\dd \hat{u} = \partial \hat{u} + \dbarre \hat{u} = \partial \hat{u} + O(x^2)$ et d'autre part comme les $\partial \hat{u}$ forment une base du fibré tangent holomorphe, les $\overline{\partial \hat{u}}$ forment une base du fibré tangent anti-holomorphe. Ainsi, il existe un $\tilde{Q}$ tel que $\dbarre \hat{u} = \tilde{Q} \overline{\partial \hat{u}}$ et il s'en suit que $\tilde{Q} \in O(x^2)$. On notera $Q$ sa partie homogène de degré $2$.
+
+On a donc
+\begin{equation}\label{Q}
+\dbarre \hat{u} = Q \dd \overline{\hat{u}} + O(x^3)
+\end{equation}
+
+Les coordonnées $\hat{u}$ sont obtenues par combinaisons à coefficient complexes des $\hat{x}^i = R^i_j x^j$. Avec les notations habituelles, l'équation \eqref{Q} donne
+\begin{equation}
+\dot{P_0(O)}R^{-1}\overline{\left(P_\zeta - P_\zeta(O)\right)} = Q\dot{\overline{P_0(O)}}R^{-1}+ O(x^3)
+\end{equation}
+
+Or le terme $P_\zeta - P_\zeta(O)$ peut se développer en série entière et au moins s'approcher à l'ordre $2$ tout en sachant que son terme d'ordre $0$ est nul et son terme d'ordre $1$ aussi grâce à \eqref{normal} ~:
+\begin{equation}
+P_\zeta - P_\zeta(O) = \demi\dppp{P_\zeta}{x^t}{x^s}x^tx^s + O(x^3) 
+\end{equation}
+Ce qui donne
+\begin{equation}
+P_\zeta - P_\zeta(O) = \demi I_{\zeta,ts}x^{ts} + O(x^3)
+\end{equation}
+
+
+Après identification et multiplication par $R$ à droite, on obtient
+\begin{equation}
+Q\dot{\overline{P_0(O)}} = \dot{P_0(O)}R^{-1}I_{\zeta,ts}x^{ts}R
+\end{equation}
+
+Or 
+\begin{equation}
+I_{\zeta,ts} = \dfrac{1}{1+\zeta\bar\zeta}\left(
+(\zeta + \bar\zeta) + i(\zeta - \bar\zeta) I
+\right)J_{,ts}
+\end{equation}
+
+En fait $J_{,ts}$ est de la forme $L \cdot J$ où $L$ est un pseudo-tenseur faisant intervenir les symboles de Christoffel et le tenseur de courbure de Riemann. Il ne dépend que de la géométrie de $X$ en $O$.
+
+Cependant son caractère non-tensoriel est source de problèmes notamment quand on va vouloir changer de coordonnées $x \rightsquigarrow \hat{u}$ pour intégrer $Q$ en suivant la méthode de Demailly \excl
+
+
+\section{Le cas de $X =T^*\Pro^1$}
+L'ensemble
+\begin{equation}
+\ens{\left((w,w'),[z_0:z_1]\right) \in \C^2 \times \Pro^1}{wz_0^2+w'z_1^2 = 0}
+\end{equation}
+s'identifie naturellement à l'espace cotangent à $\Pro^1$.
+
+Les coordonnées $I$-holomorphes associées dans une carte près de $O = ((0,0),[1:0])$ sont $v = z_1 / z_0$ et $w$.
+
+\subsection{Forme symplectique et seconde structure complexe} La forme symplectique holomorphe qui existe naturellement sur le cotangent d'une variété kählérienne est ici
+\begin{equation}
+\sigma = \dd w \wedge \dd v
+\end{equation}
+dès lors $J$ est  donnée par
+\begin{align}\label{JTP1}
+J \partial_v &= -\partial_{\bar{w}}\\
+J \partial_w &= \partial_{\bar{v}}
+\end{align}
+Pour des raisons pratique on exprimera plutôt $J$ comme agissant sur les $1$-formes
+\begin{align}
+J \dd v &= \dd {\bar{w}}\\
+J \dd w &= -\dd {\bar{v}}
+\end{align}
+\subsection{Coordonnées holomorphes sur l'espace des twisteurs} On dispose d'après ce qui précède de $3$ coordonnées holomorphes approchées sur $Z$~:
+\begin{itemize}
+\item $v-i\zeta \bar{w} + O(|v,w|^2)$
+\item $w +i\zeta \bar{v} + O(|v,w|^2)$
+\item $\zeta$
+\end{itemize}
+
+Dans le cas $\zeta = 1$ c'est-à-dire $I_\zeta = J$ les coordonnées sont $v-i\bar{w}$ et $w+i\bar{v} = i(\bar{v} - iw)$. Il suffit de vérifier qu'elles sont bien holomorphes sur $(X,J)$. 
+\begin{equation}
+J \dd \hat{v} = (J \dd v) - i (J\dd \bar{w}) = \dd \bar{w} + i \dd v = i \dd \hat{v}
+\end{equation}
+et de même pour $\hat{w}$. 
+
+Un calcul similaire montre que les coordonnées $\hat{v}$ et $\hat{w}$ sont holomorphes sur chaque fibre $X_\zeta$. Ainsi on a bien des coordonnées holomorphes \emph{exactes} sur $Z(T^* \Pro^1)$.
+
+\subsection{Cas général} Dans le cas général, on ne peut pas espérer avoir une expression aussi simple que ({\autoref{JTP1}}) pour $J$ et donc ses variations doivent apparaître dans les coordonnées $\hat{v}$ et $\hat{w}$. On peut, en prenant des coordonnées normales {\autoref{normal}} ne pas voir ces variations à l'ordre $1$, mais elles arrivent nécessairement à l'ordre $2$. Il se peut que la constance de $J$ provienne de la courbure constante de $\Pro^1$, on pourrait se demander si les cotangent d'espaces homogènes ne vérifieraient pas tous cette propriété ? Cf Calabi \?
+
+
+
+
+
+
+
+
+
+%%%%%%%
+                        %%%%%%%
+%%%%%%%                         %%%%%%%%%%%%%%
+                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%                          %%%%%%%%%%%%%%
+                         %%%%%%%
+%%%%%%%
+
+
+\end{document}

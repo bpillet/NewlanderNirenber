@@ -1,0 +1,81 @@
+\documentclass[a4paper]{article}
+\usepackage[thm,ct]{dipneuste}
+
+\begin{document}
+
+
+\section{Germe de variété analytique complexe défini par une variété analytique réelle}
+\subsection{Introduction}
+On peut considérer une fonction analytique réelle sur un voisinage de $0$ dans $\R$, alors il existe $R >0$ tel que cette fonction soit développable en série entière sur $]-R,R[$. Ainsi elle définit une fonction analytique complexe donc holomorphe sur le disque ouvert de rayon $R$ centré en $0$ dans $\C$.
+
+On peut faire le même raisonnement avec une fonction analytique définie sur un voisinage de $0$ dans $\R^n$, alors il existe $(R_1,\cdots,R_n) \in \R^n_{>0}$ tels que la fonction s'étende en une fonction holomorphe sur le polydisque $\Delta(R_1,\cdots,R_n) \subseteq \C^n$.
+
+Maintenant les zéros réels de la fonction précédente (supposée dès maintenant non nulle), formaient une sous-variété analytique de $\R^n$ ; il s'étendent en une unique sous-variété complexe du polydisque $\Delta \in \C^n$ : les zéros de la fonction holomorphe obtenue par prolongement.
+
+\subsection{Théorème de complexification}
+
+\begin{thm}\label{WB1}
+Soit $M$ une variété analytique réelle paracompacte. Alors~:
+\begin{itemize}
+\item Il existe $X$ variété complexe (de variété analytique réelle sous-jacente $X_\R$) et $\varphi : M \rightarrow X_\R$ plongement analytique. (tel que dans les cartes $\varphi$ s'identifie à un isomorphisme analytique complexe restreint à $\R^n$)
+\item Si $(X_1, \varphi_1)$ et $(X_2,\varphi_2)$ sont deux telles complexifications de $M$, alors en notant $M_i = \varphi_i(X_{i,\R})$, l'isomorphisme $\varphi_2 \circ \varphi_1^{-1} : M_1 \rightarrow M_2$ se prolonge en un isomorphisme de variété complexes d'un ouvert de $X_1$ contenant $M_1$ sur un ouvert de $X_2$ contenant $M_2$.
+\end{itemize}
+\end{thm}
+
+
+Le théorème \ref{WB1} nous dit que toute variété analytique réelle définit un unique "germe" de variété complexe, ayant donc la propriété universelle suivante (dont l'énoncé est mal spécifié)~:
+\begin{prop}[Propriété universelle de la complexification infinitésimale]
+Soit $M$ une variété analytique réelle paracompacte. $X$ la "\textit{complexification infinitésimale}", et $X_\R$ la "variété" analytique réelle sous-jacente. Alors~:
+\begin{itemize}
+\item $\iota : M \hookrightarrow X_\R$.
+\item Pour tout $Y$ variété complexe complexification de $M$, il existe un unique $\psi : X \hookrightarrow Y$ qui fasse commuter le diagramme suivant.
+\end{itemize}
+\begin{center}\begin{tikzpicture}
+\matrix (m) [matrix of math nodes, row sep=2em,
+column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+{ M & X_\R & X\\
+  Y_\R &    & Y\\ };
+\path[->, font=\scriptsize]
+(m-1-1) edge node[auto] {$\iota$} (m-1-2)
+(m-1-1) edge node[auto] {} (m-2-1)
+(m-2-1) edge[dotted] node[below] {$\psi_\R$} (m-1-2)
+(m-2-3) edge[dotted] node[auto] {$\psi$} (m-1-3);
+\end{tikzpicture}\end{center}
+\end{prop}
+
+Cet object $X$ n'existe pas dans la catégorie des variété complexes, mais d'après la propriété précédente il s'exprime comme une limite projective et donc existe dans la complétion libre de la catégorie des variété complexes.
+
+\paragraph{Notations}
+\begin{itemize}
+\item $\textbf{AnaMan}_\C$ variétés analytiques complexes (et applications holomorphes)
+\item $\textbf{AnaMan}_\R$ variétés analytiques réelles (et applications analytiques)
+\item $C= Psh^{op}(\textbf{AnaMan}_\C^{op}):= \Hom(\textbf{AnaMan}_\C,\textbf{Set})^{op}$ complétion libre de la catégorie des variétés analytiques complexes.
+\item $\mathcal{Y}^{op} : \textbf{AnaMan}_\C \rightarrow C$ plongement de \textsc{Yoneda} dual.
+\end{itemize}
+
+On a le diagramme suivant~:
+\begin{center}\begin{tikzpicture}
+\matrix (m) [matrix of math nodes, row sep=2em,
+column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+{ \textbf{AnaMan}_\C & C \\
+  \textbf{AnaMan}_\R &  \\ };
+\path[->, font=\scriptsize]
+(m-1-1) edge node[auto] {$\mathcal{Y}^{op}$} (m-1-2)
+(m-1-1) edge node[left] {$(\_)_\R$} (m-2-1)
+(m-2-1) edge[dotted] node[below right] {"germe"} (m-1-2);
+\end{tikzpicture}\end{center}
+
+
+\appendix
+\section{Extension de \textsc{Kan} à gauche}
+Soient $R$ et $T$ deux anneaux (non nécessairement commutatifs) et $\Rr$, $\Tt$ les catégories correspondantes de modules sur ces anneaux. Soit $M$ un $R$-module à gauche et $T$-module à droite.
+
+Le module $M$ peut-être vu comme un foncteur préservant les produits finis : $F : \Rr^0 \rightarrow \text{Mod}_\Tt$.
+
+Alors le foncteur $\_ \otimes_R M : \text{Mod}_\Rr \rightarrow \text{Mod}_\Tt$ est l'extension de \textsc{Kan} à gauche de $F$ le long du plongement de \textsc{Yoneda} : $\Rr^0 \hookrightarrow \text{Mod}_\Rr$.
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{./Integrability_of_cmplx_structures}
+
+\end{document}

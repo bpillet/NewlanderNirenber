@@ -1,0 +1,53 @@
+\section{Cas général}
+$(M,I)$ variété réelle de dimension $2N$ avec structure complexe $I$, intégrable. On fixe un point $0 \in M$ et $x^i$ des coordonnées réelles centrées en $0$ pour lesquelles l'opérateur $I(0)$ s'écrit
+\[
+\begin{bmatrix}
+0 & 1_N \\ 
+-1_N & 0
+\end{bmatrix} 
+\]
+dans la base des $\dpp{}{x^i}\vert_{ 0}$.
+
+\todo {\bf Décrire les indices et notations}
+
+On note
+\begin{equation}
+P = P(x) =  \demi \left( 1 - iI(x)\right)
+\end{equation}
+la projection sur l'espace tangent $I(x)$-holomorphe inclus dans $T_xM$. On a en particulier $P(0) = \demi (1- iI(0))$.
+
+\todo {\bf quelques propriétés des $P$}
+
+L'opérateur $\dbarre$ sur les fonctions s'écrit
+\begin{equation}
+\dbarre f = \bar{P}^* \dd f
+\end{equation}
+
+Posons $u^a = 2 P(0)^a_k x^k = x^a + ix^{a+N}$. On a dès lors
+\begin{align*}
+\dbarre u^a & = \bar{P}^* \dd u^a\\
+					 & = \bar{P}^* \left( 2P(0)^a_k \dd x^k\right)\\
+					 & = 2P(0)^a_k \bar{P}^k_l \dd x^l
+\end{align*}
+
+Or quand $x \rightarrow 0$, on a $\bar{P}(x) \rightarrow \bar{P}(0)$ et donc $\dbarre u^a = o(1)$ en $0$. D'autre part $\overline{\partial u^b} = \dd \bar{u}^b - \overline{\dbarre u^b} = \dd \bar{u}^b + o(1) = 2\bar{P}(0)^b_k \dd x^k + o(1)$. Or les $u^a$ étant des coordonnées, on a deux familles $\dbarre u^a$ et $\overline{\partial u^b}$ de $\Omega^{0,1}_M$ dont la seconde est une base. On peut donc écrire
+\[
+\dbarre u^a = Q^a_b \overline{\partial u^b} = Q^a_b\dd \bar{u}^b + o(Q^a_b)
+\]
+Il est clair que $Q^a_b \rightarrow 0$ quand $x \rightarrow 0$ et donc on a la relation suivante
+\[
+P(0)^a_k \bar{P}^k_l = Q^a_b \bar{P}(0)^b_l + o(Q^a_b)
+\]
+en évaluant cette relation pour $l = c$ et en remarquant que $\bar{P}(0)^b_c = \delta^b_c$, on trouve
+\[
+Q^a_b \sim P(0)^a_k \bar{P}^k_c
+\]
+Notons $\tilde{Q}$ cette partie principale.
+
+\todo {\bf [\dots]}
+
+\begin{equation}
+z^a = u^a + u^b\bar{u}^c\dpp{\tilde{Q}^a_c}{u^b}+ \demi \bar{u}^b\bar{u}^c\dpp{\tilde{Q}^a_c}{\bar{u}^b}
+\end{equation}
+
+\section{Le cas de l'espace des twisteurs de $M$ variété hyperkählérienne}

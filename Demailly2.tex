@@ -1,0 +1,585 @@
+\documentclass[12pt,draft]{article}
+\usepackage[couleur]{dipneuste}%ct%thm%couleur%draft%minimal
+
+\geometry{a4paper, hmargin=.15 \paperwidth, vmargin=.12 \paperheight}
+
+\setcounter{secnumdepth}{5}
+\renewcommand{\theparagraph}{\bf\color{DarkBlue}(\arabic{section}.\arabic{subsection}.\alph{paragraph})}
+
+\renewcommand{\Re}{\texttt{Re}}
+\renewcommand{\Im}{\texttt{Im}}
+
+\begin{document}
+\section{Intégrabilité}
+\subsection{Notations}
+\paragraph*{Données.}
+Soit $M$ une variété réelle lisse ou analytique de dimension $2n$ munie d'une structure complexe $I$ intégrable. On dispose au voisinage d'un point $O \in M$ de coordonnées réelles $x^i$ centrées en $O$. On notera $u^a = x^a + ix^{a+n}$	.
+
+On introduit les objets suivants~:
+\paragraph{} Les différents faisceaux naturels, (on notera $\Gamma(U,\Ff)$ les sections de $\Ff$ sur l'ouvert $U$)~:
+\begin{itemize}
+\item Les faisceaux constants $\underline{\R}$, $\underline{\C}$. Dont les sections sont les fonctions localement constantes à valeurs dans $\R$, resp. $\C$.
+\item Le faisceau structural (lisse) $\Cc^\infty$ ou $\Cc^\infty_M$, dont les sections sont les fonctions lisses à valeurs complexes.
+\item Le faisceau structural analytique $\Cc^\omega$ ou $\Cc^\omega_M$, dont les sections sont les fonctions analytiques à valeurs complexes.
+\end{itemize}
+\paragraph{} Le fibré tangent $T_\R M$ à $M$, c'est de manière naturelle un faisceau de $\R$-espaces vectoriels de dimensions $2n$. Une base locale des sections est donnée par la famille~:
+\[
+\dpp{}{x^1} , \dpp{}{x^2} , \cdots , \dpp{}{x^{2n}}
+\]
+On prend comme définition qu'un champ de vecteur est une dérivation réelle sur l'anneau des fonctions réelles sur $M$.
+\paragraph{} Son complexifié $T_\C M := T_\R M \otimes_\R \C$ (fibre à fibre ou, ce qui revient au même le produit tensoriel au dessus de faisceau constant de corps $\underline{\R}$ avec le faisceau de $\underline{\R}$-espaces vectoriels $\underline{\C}$).
+Une base locale des sections est donnée par la famille précédente ou par~:
+\[
+\dpp{}{u^1} , \dpp{}{u^2} , \cdots , \dpp{}{u^{n}} , \dpp{}{\bar{u}^1} , \dpp{}{\bar{u}^2} , \cdots , \dpp{}{\bar{u}^{n}}
+\]
+On a la décomposition spectrale (fibre à fibres ou en tant que faisceaux)
+\[
+T_\C M = T^{1,0}M \oplus T^{0,1}M
+\]
+qui fait apparaître
+\begin{itemize}
+\item L'espace propre pour la valeur propre $i$ de l'opérateur $I$~: $T^{1,0}M$. Fibré vectoriel complexe de dimension $n$ dont les sections sont appelés \textit{champs de vecteurs $I$-holomorphes}.\\
+Il s'identifie naturellement au fibré tangent réel par l'application partie réelle $T^{1,0}M~\rightarrow~T_\R M$ ; on le notera par la suite $TM$.
+\item L'espace propre pour la valeur propre $-i$ de l'opérateur $I$~: $T^{0,1}M$. Fibré vectoriel complexe de dimension $n$ dont les sections sont appelés \textit{champs de vecteurs \mbox{($I$-)antiholomorphes}}.
+\item Une opération $X \mapsto \bar{X}$ sur $T_\C M = T_\R M \otimes_\R \C$ qui échange $T^{1,0}M$ et $T^{0,1}M$.
+\end{itemize}
+\paragraph{} L'espace des $1$-formes réelles $\Omega_{\R,M} := \Hom_\R(T_\R M,\R)$.
+\paragraph{} Son complexifié $\Omega_{\C,M} := \Hom_\C(T_\C M,\C) = \Hom_\R(T_\R M,\C)$. On a la décomposition obtenue par dualité~:
+\[
+\Omega_{\C,M} = \Omega^{0,1} \oplus \Omega^{1,0}
+\]
+\begin{itemize}
+\item $\Omega^{1,0} := (T^{0,1}M)^\bot$ faisceau des formes qui s'annulent sur les $(0,1)$-vecteurs. Fibré vectoriel complexe de dimension $n$.\\
+C'est également l'espace des formes propres de valeur propre $i$ pour l'operateur $I^*$.
+\item $\Omega^{0,1} := (T^{1,0}M)^\bot$ faisceau des formes qui s'annulent sur les $(1,0)$-vecteurs. Fibré vectoriel complexe de dimension $n$.\\
+C'est également l'espace des formes propres de valeur propre $-i$ pour l'operateur $I^*$.
+\end{itemize}
+\paragraph{} On définit les $m$-formes à valeur complexes par~:
+\[
+\Omega^m := \bigwedge^m \Omega_{\C,M}
+\]
+C'est le faisceau des formes $m$-linéaires alternées sur $TM$ à valeurs complexes. On remarquera que $\Omega^0 = \Cc^\infty_M$ faisceau des fonctions complexes lisses.
+\paragraph{ \label{forme_type}} Enfin, on définit les $(p,q)$-formes de la façon suivante~:
+\[
+\Omega^{p,q} : = \bigwedge^p \Omega^{1,0}  \wedge \bigwedge^q \Omega^{0,1} \; \subset \; \Omega^m
+\]
+Si on pose $m=p+q$. C'est également le faisceau des formes $m$-linéaires alternées sur $T_\C M$ qui s'annulent sur les $m$-uplets de vecteurs $(X_1,\cdots X_{m})$ dès lors que
+\begin{itemize}
+\item au moins $p+1$ des $X_i$ sont de type $(1,0)$
+\item ou au moins $q+1$ des $X_i$ sont de type $(0,1)$.
+\end{itemize}
+On a alors la décomposition
+\[
+\Omega^m = \bigoplus_{p+q = m} \Omega^{p,q}
+\]
+\paragraph{} Les opérateurs $\dd : \Omega^k \rightarrow \Omega^{k+1}$ en définissant $(\dd \theta)(X)$ pour $\theta \in  \Omega^k$, $X=(X_1,X_2, \cdots , X_{k+1})$ où les $X_i \in TM$ par~:
+\[
+\sum_{1 \leq j \leq k} (−1)^j X_j\left(\theta\left(\check{X}^j\right)\right)+
+\sum_{1 \leq j < i \leq k} (−1)^{j+i} \theta\left([X_j,X_i ], \check{\check{X}}^{j,i} \right)
+\]
+\begin{itemize}
+\item Dans le cas $k=0$, la deuxième partie de la formule est vide, et on retrouve l’opération $f \mapsto X(f)$, ainsi $(\dd f)(X) = X(f)$.
+\item Cette définition intrinsèque coïncide dans des coordonnées avec
+\[
+\dd \theta = \dd \left(\theta_K \dd x^K\right) = \dpp{\theta_K}{x^i}\dd x^i \wedge \dd x^K
+\]
+\item L’opérateur $d$ sur $ \Omega^k$ satisfait la règle de \textsc{Leibnitz} : 
+\[
+\dd\,(\alpha \wedge \beta) = \dd \alpha \wedge \beta +(-1)^{\deg(\alpha)} \alpha \wedge \dd \beta
+\]
+\end{itemize}
+\paragraph{} On dispose naturellement des projections
+\[
+\pi^{p,q} : \Omega^{p+q} \longrightarrow \Omega^{p,q}
+\]
+On peut dès lors définir les opérateurs $\partial$ et $\dbarre$ comme
+\begin{itemize}
+\item la partie de type $(p+1,q)$ de la différentielle d'une $(p,q)$-forme : $\partial = \pi^{p+1,q} \circ \dd_{\,\vert \Omega^{p,q}}$
+\item la partie de type $(p,q+1)$ de la différentielle d'une $(p,q)$-forme : $\dbarre = \pi^{p,q+1} \circ \dd_{\,\vert \Omega^{p,q}}$
+\end{itemize}
+\paragraph{} On définit $\Oo_M$ (ou $\Oo_{(M,I)}$ si il y a ambiguïté) le faisceau des fonctions holomorphes sur $M$ à valeurs complexes comme le noyau de l’opérateur $\dbarre : \Cc^\infty_M \rightarrow \Omega^1$. C'est automatiquement un sous-faisceau de $\Cc^\omega_M$ (conséquence de la formule de \textsc{Cauchy}).\\
+De même on définit $\Oo_M(E)$ pour $E \rightarrow M$ fibré vectoriel holomorphe, comme le faisceau des sections holomorphes de $E$.
+\paragraph{\label{integrabilité}} La structure presque complexe $I$ est dite \emph{intégrable} si l'une des conditions équivalentes est satisfaite~:
+\begin{enumerate}[($i$)]
+\item Le tenseur de \textsc{Nijenhuis} défini par~: $N_I(X,Y) := [ I X , I Y ] - I [ X , I Y ] - I [ I X , Y ] + I^2 [ X , Y ]$ est identiquement nul.
+\item Pour tout champ de vecteur complexes $X,Y$ sur $M$ satisfaisant $I X=iX$ et $I Y=iY$, le crochet de \textsc{Lie} $[X,Y]$ satisfait également $I[X,Y] = i[X,Y]$
+\item L'espace tangent $I$-holomorphe $TM = T^{1,0}M \subset T_\C$  est stable par crochet de Lie. C'est-à-dire $[TM,TM] \subseteq TM$
+\item Pour toute famille $(\omega^\alpha)_\alpha$ de $(1,0)_I$-formes sur $M$ de rang $n$, et pour tout $\alpha$, $\dd \omega^\alpha = \theta^\alpha_\beta \wedge \omega^\beta$ pour des $1$-formes $\theta^\alpha_\beta$.
+\item Le dual de l'espace tangent $I$-holomorphe $\Omega^{1,0} \subseteq \Omega^1$ satisfait $\dd \Omega^{1,0} \subseteq \Omega^1 \wedge \Omega^{1,0}_M$.
+\item $\dd = \partial + \dbarre$, ce qui signifie que la différentielle d'une $(p,q)$-forme est une somme de $(p+1,q)$ et $(p,q+1)$-formes.
+\item $\dd  = \partial + \dbarre$ sur $\Omega^1_M$.
+\item Le diagramme suivant commute~:
+\begin{center}\begin{tikzpicture}
+\matrix (m) [matrix of math nodes, row sep=2em,
+column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+{ \Omega^{0,1} & \Omega^1 & \Omega^{1,0} \\
+  \Omega^{0,2} & \Omega^2 & \Omega^{2,0} \\ };
+\path[->, font=\scriptsize]
+(m-1-2) edge node[auto] {$\pi^{0,1}$} (m-1-1)
+(m-1-2) edge node[auto] {$\pi^{1,0}$} (m-1-3)
+(m-2-2) edge node[auto] {$\pi^{0,2}$} (m-2-1)
+(m-2-2) edge node[auto] {$\pi^{2,0}$} (m-2-3)
+(m-1-1) edge node[auto] {$\dbarre$} (m-2-1)
+(m-1-2) edge node[auto] {$d$} (m-2-2)
+(m-1-3) edge node[auto] {$\partial$} (m-2-3);
+\end{tikzpicture}\end{center}
+Cette propriété d'intégrabilité est détaillé en appendice \autoref{preuveintegrabilite}.
+\item $\partial^2 f = 0$ pour tout $f \in\Gamma(M,\Cc^\infty)$.
+\end{enumerate}
+
+\paragraph*{\todo}
+\begin{itemize}
+\item Anti-symétrisation
+\item Notation tensorielle
+\item $\dd$ (définition tensorielle)
+\end{itemize}
+
+\paragraph*{Formulaire.}
+\begin{eqnarray*}
+\dd f & = & \dpp{f}{z}\ \dd z + \dpp{f}{\bar{z}}\ \overline{\dd z} \\
+\dbarre f & = & \dpp{f}{z}\ \dbarre z + \dpp{f}{\bar{z}}\ \overline{\partial z} \\
+\partial f & = & \dpp{f}{z}\ \partial z + \dpp{f}{\bar{z}}\ \overline{\dbarre z}
+\end{eqnarray*}
+
+\subsection{Expression du $\dbarre$ et intégrabilité}
+\subsubsection{Expression pour les fonctions}
+La projection d'un vecteur sur l'espace propre pour la valeur propre $-i$ de l'opérateur $I$ est donnée par
+\[
+\bar{P} : X \mapsto \demi\left(X + iIX\right) \in T^{0,1}M
+\]
+Ainsi pour une $1$-forme, l'opérateur de projection $\Omega^1 \rightarrow \Omega^{0,1}$ obtenu par dualité est donné par
+\[
+\bar{P}^* : \omega \mapsto \demi\left(\omega + i I^* \omega\right)
+\]
+Ce qui donne en notation tensorielle
+\[
+\bar{P}^* : \omega_i \dd x^i \mapsto \demi(\omega_k +i I^j_k \omega_j)\dd x^k
+\]
+ou encore simplement
+\begin{equation}
+\dd x^j  \mapsto \demi(\delta^j_k + i I ^j_k) \dd x^k
+\end{equation}
+Par suite, on peut exprimer l'opérateur $\dbarre : \Cc^\infty_M \rightarrow \Omega^{0,1}$ comme suit
+\begin{equation}
+\dbarre f = \demi \left(
+\dpp{f}{x^k}
+\right)\left(\delta^k_j + i I^k_j\right) \dd x^j
+\end{equation}
+\subsubsection{Expression pour les $1$-formes}
+\paragraph*{Caractérisation du type.}
+On rappelle, cf {\autoref{forme_type}}, qu'une $2$-forme $\theta$ est dans $\Omega^{0,2}$ si et seulement si pour tout $X,Y \in T_\C M$, si $X$ est de type $(1,0)$ alors $\theta(X,Y) = 0$. Il est alors équivalent de demander que $\forall X,Y \in T_\C M$, $\theta(X-iIX,Y) = 0$ ce qui s'exprime en notation tensorielle
+\[
+\left(\theta_{ij} - i I_i^k\theta_{kj}\right)\dd x^i \wedge \dd x^j = 0
+\]
+ou alors
+\[
+2\theta_{ij} - i( I_i^k \theta_{kj} - I_j^k \theta_{ki} ) = 0
+\]
+
+Dans le cas d'une $2$-forme $\theta$ de type $(1,1)$, on doit de même vérifier que $\forall X,Y \in T_\C M$, $\theta(X-iIX,Y-iIY) = 0$ et $\theta(X+iIX,Y+iIY) = 0$, car une telle forme s'annule sur les paires de vecteurs de même type. En développant les deux équations précédentes et en simplifiant, on peut réécrire la condition d'appartenance à $\Omega^{1,1}$ par
+\begin{eqnarray*}
+\theta(X,Y)-\theta(IX,IY) &=& 0\\
+\theta(IX,Y) + \theta(X,IY) & = & 0
+\end{eqnarray*}
+On remarque que la seconde équation est équivalente à la première (quitte à changer $X$ par $IX$). On peut donc traduire l'appartenance à $\Omega^{1,1}$ en notation tensorielle de la façon suivante
+\[
+\left(\theta_{ij}-I_i^kI_j^l\theta_{kl}\right) \dd x^i \wedge \dd x^j = 0
+\]
+ou encore (après anti-symétrisation et simplification)
+\[
+\theta_{ij}-I_i^kI_j^l\theta_{kl} = 0
+\]
+On remarque au passage que cette équation est réelle, et l'on retrouve que l'espace $\Omega^{1,1}$ est stable par conjugaison.
+
+\paragraph*{Opérateur de projection "partie de type $(1,1)$".}Il suffit dès lors de vérifier que
+\[
+\theta_{ij} \mapsto \demi \left(\theta_{ij} + I_i^kI_j^l\theta_{kl}\right)
+\]
+réalise une projection de $\Omega^2$ sur $\Omega^{1,1}$.
+
+\paragraph*{Opérateur de projection "partie de type $(0,2)$".} Étant donné $\theta \in \Omega^2$, on peut remarquer que $\sigma$ définie par
+\[
+ \sigma(X,Y) :=\dfrac{1}{4}\theta\left(X+iIX,Y+iIY\right) = \dfrac{1}{4}\left(
+ \theta(X,Y) - \theta(IX,IY) + i\left(\theta(X,IY) + \theta(IX,Y) \right)
+ \right)
+\]
+est bien une $2$-forme qui s'annule dès qu'une de ses variables est de type $(1,0)$. Elle est donc de type $(0,2)$ et c'est la projection de $\theta$ via $\Omega^2 \rightarrow \Omega^{0,2}$.
+
+En coordonnées, on a
+\[
+\theta_{ij} \mapsto \dfrac{1}{4}\left( \theta_{ij} - I_i^k I_j^l \theta_{kl} + iI_i^k \theta_{kj} + i I_j^l\theta_{il}\right)
+\]
+ou encore
+\[
+\theta_{ij} \mapsto \dfrac{1}{4}\left( \delta_i^k\delta_j^l - I_i^k I_j^l  + iI_i^k\delta_j^l + i \delta_i^kI_j^l\right)\theta_{kl}
+\]
+
+\paragraph*{Opérateur $\dbarre$ pour les $(1,0)$-formes.} Étant donnée une $1$-forme $\omega = \omega_j \dd x^j$ de type $(1,0)$, on a
+\[
+\dbarre \omega = \demi \dpp{\omega_k}{x^l}\left(\delta^k_i \delta^l_j + I^k_i I^l_j \right) \dd x^i \wedge \dd x^j
+\]
+Pour des raisons de symétrie, il se trouve que l'opérateur $\partial : \Omega^{0,1} \rightarrow \Omega^{1,1}$ a la même expression pour $\omega$ de type $(0,1)$~:
+\[
+\partial \omega = \demi \dpp{\omega_k}{x^l}\left(\delta^k_i \delta^l_j + I^k_i I^l_j \right) \dd x^i \wedge \dd x^j
+\]
+
+\paragraph*{Opérateur $\dbarre$ pour les $(0,1)$-formes.}Étant donnée une $1$-forme $\omega = \omega_j \dd x^j$ de type $(0,1)$, on a
+\[
+\dbarre \omega = \dfrac{1}{4} \dpp{\omega_k}{x^l}\left( \delta_i^k\delta_j^l - I_i^k I_j^l  + iI_i^k\delta_j^l + i \delta_i^kI_j^l\right) \dd x^i \wedge \dd x^j
+\]
+Et en conjuguant on obtient l'opérateur $\partial : \Omega^{1,0}_M \rightarrow \Omega^{2,0}_M$ ce qui donne
+\[
+\partial \omega = \dfrac{1}{4} \dpp{\omega_k}{x^l}\left( \delta_i^k\delta_j^l - I_i^k I_j^l  - iI_i^k\delta_j^l - i \delta_i^kI_j^l\right) \dd x^i \wedge \dd x^j
+\]
+\subsubsection{Intégrabilité}
+La seule chose à vérifier est $\dbarre^2 = 0$ pour les fonctions. C'est une condition nécessaire et suffisante d'intégrabilité d'après \autoref{integrabilité}.
+
+\[
+\dbarre\dbarre f = \dfrac{1}{8} \underset{T_{kl}}{\underbrace{\dpp{}{x^l}\left(
+\dpp{f}{x^m}
+\left(\delta^m_k + i I^m_k\right)\right)}}\underset{S_{ij}^{kl}}{\underbrace{\left( \delta_i^k\delta_j^l - I_i^k I_j^l  + iI_i^k\delta_j^l + i \delta_i^kI_j^l\right)}} \dd x^i \wedge \dd x^j
+\]
+où le tenseur $T$ peut s'écrire
+\[
+T_{kl} = \dppp{f}{x^l}{x^m}(\delta_k^m + i I_k^m) + i \dpp{f}{x^m}\dpp{I^m_k}{x^l}
+\]
+En utilisant la propriété de symétrie du tenseur $S$, l'équation $\dbarre^2 f = 0$ équivaut à
+\[
+(T_ {kl} - T_{lk})S_{ij}^{kl} = 0
+\]
+En évaluant pour $f= x^m$, on trouve
+\[
+\left(
+\dpp{I^m_k}{x^l} - \dpp{I^m_l}{x^k}
+\right)\left( \delta_i^k\delta_j^l - I_i^k I_j^l  + iI_i^k\delta_j^l + i \delta_i^kI_j^l\right) = 0
+\]
+ En se restreignant à la partie imaginaire de cette équation, on obtient
+ \[
+I_i^k\partial_jI_k^m - I_j^k\partial_i I_k^m - I_i^k\partial_kI^m_j + I_j^k\partial_kI^m_i  = 0\\
+\]
+en notant $\partial_i$ pour $\dpp{}{x^i}$.
+Or sachant que $I_i^kI_k^j = \delta_i^j$ on obtient par dérivation $I_k^j \partial_l I_i^k = - I_i^k\partial_l I_k^j$. Ce qui peut se réintroduire dans les deux premiers termes de l'équation ci-dessus pour obtenir
+\[
+I_k^m (\partial_i I_j^k - \partial_j I_i^k) - I_i^k\partial_kI^m_j + I_j^k\partial_kI^m_i = 0
+\]
+qui n'est autre que l'expression du tenseur de \textsc{Nijenhuis}.
+\section{Coordonnées holomorphes approchées \cite{Demailly}}
+
+On construit par récurrence sur $s\geq 0$ des coordonnées $z^a, \bar{z}^a$ sur $M$ telles que
+\begin{equation}\label{BigO}
+\dbarre z^a = o(|z|^s)
+\end{equation}
+
+\paragraph*{À l'ordre $0$.} Sous l'hypothèse que $I(0)$ a la forme suivante
+\[
+\begin{bmatrix}
+0 & -\Id_n \\ 
+\Id_n & 0
+\end{bmatrix} 
+\text{
+dans la base des } \ 
+\dpp{}{x^i},
+\]
+on montre que les coordonnées $u^a = x^a + i x^{a+n}$ satisfont \eqref{BigO} à l'ordre $0$ au voisinage de $O$.
+
+L'expression de $\dbarre$ est donnée par
+\[
+\dbarre f = \demi \left(
+\dpp{f}{x^i}
+\right)\left(\delta^i_j + i I^i_j\right) \dd x^j
+\]
+Ce qui appliqué à $u^a$ donne
+\begin{eqnarray*}
+\dbarre u^a & = &  \demi \left(
+\dpp{u^a}{x^i}
+\right)\left(\delta^i_j + i I^i_j\right) \dd x^j\\
+& = & \demi \left(
+\delta^a_i + i \delta^{a+n}_i
+\right)\left(\delta^i_j + i I^i_j\right) \dd x^j\\
+& = & \demi (
+\underset{o(1)}{\underbrace{\delta^a_j - I^{a+n}_j}} + i(\underset{o(1)}{\underbrace{\delta^{a+n}_j + I^a_j}})
+) \dd x^j
+\end{eqnarray*}
+En effet on a, par hypothèse, $I^{a+n}_b(O) = \delta^a_b$ et  $I^a_{b+n}(O) = -\delta^a_b$ et de plus $I$ dépend continûment du point.
+
+\paragraph*{À l'ordre $1$.}
+D'après \autoref{integrabilité} toute l'information sur l'intégrabilité est contenue dans $\dbarre^2 = 0$. Il faut donc parvenir à pousser le développement de $\dbarre u^a$ sans faire intervenir la structure complexe.
+On sait que $\dbarre u^a$ est une $(0,1)$-forme, donc elle s'écrit dans la base des $\overline{\partial u^b}$~:
+\[
+\dbarre u^a = Q^a_b \overline{\partial u^b}
+\]
+Or le calcul précédent montre également que $\partial u^b$ tends vers $\dd u^b$ en $O$. Par suite, nécessairement $Q_a^b(O) = 0$.
+
+Si on applique l'égalité $\dbarre u^a = Q^a_b \overline{\partial u^b} = Q^a_b (\dd \overline{u^b} + o(1))$ à $\dpp{}{x^b}$ on en déduit
+\[
+\delta^a_b - I^{a+n}_b +\underset{0}{\underbrace{ i\delta^{a+n}_b}} + i I^a_b = Q^a_b + o(Q^a_b)
+\]
+Si l'on décompose $I$ sous la forme suivante
+\[
+\begin{pmatrix}
+I' & * \\ 
+I'' & *
+\end{pmatrix} \quad I' = (I^a_b)_{a,b} \; , \; I'' =  (I^{a+n}_b)_{a,b} 
+\]
+Et l'on notera $\Xi = I'' + iI'$
+Après développement limité de $I'$ et $I''$ au voisinage de $O$, on obtient
+\[
+Q^a_b(u,\bar{u}) = u^c \left(-\dpp{I''^a_b}{u^c} - i \dpp{I'^a_b}{u^c}\right) + \bar{u}^c\left(-\dpp{I''^a_b}{\bar{u}^c} - i \dpp{I'^a_b}{\bar{u}^c}\right) + o(|u|)
+\]
+ou encore
+\[
+Q^a_b(u,\bar{u}) =  - u^c \dpp{\Xi^a_b}{u^c} - \bar{u}^c \dpp{\Xi^a_b}{\bar{u}^c}+ o(|u|)
+\]
+où les dérivées sont implicitement prises en $O$. On notera $\tilde{Q}$ la partie de degré $1$ de l'expression précédente (tout ce qui n'est pas négligeable devant $u$). Posons dès lors
+\[
+P^a(u, \bar{u}) = \int_0^1 \bar{u}^b \tilde{Q}^a_b(u,t\bar{u})\dd t
+\]
+Alors
+\[
+P^a = -\int_0^1 \left(u^c \bar{u}^b \dpp{\Xi^a_b}{u^c} +t \bar{u}^c\bar{u}^b \dpp{\Xi^a_b}{\bar{u}^c} \right)\dd t
+= - u^c \bar{u}^b \dpp{\Xi^a_b}{u^c} - \demi \bar{u}^c\bar{u}^b \dpp{\Xi^a_b}{\bar{u}^c}
+\]
+On considère enfin
+\[
+z^a = u^a - P^a = u^a + u^c \bar{u}^b \dpp{\Xi^a_b}{u^c} + \demi \bar{u}^c\bar{u}^b \dpp{\Xi^a_b}{\bar{u}^c}
+\]
+d'après \cite{Demailly}, ce sont des coordonnées complexes lisses qui vérifient $\dbarre z^a = o(|z|)$.
+
+
+\section{Application à l'espace des twisteurs d'une variété hyperkahlérienne}
+\subsection{Notations}
+\cite{Hitchin-Karlhede} \paragraph*{}Le but de cette partie est d'appliquer les résultats précédents à $M=Z :=X \times \Pro^1$ l'espace des twisteurs d'une variété hyperkählérienne $(X,(I,J,K),g)$ que l'on supposera construite à partir d'une variété symplectique holomorphe $(X,I,\sigma)$. 
+
+\paragraph*{}$Z$ est de dimension réelle $\dim_\R(X)+2 = 4n+2$. On notera $N = 2n+1$, ainsi $\dim_\R(Z) = 2N$.
+
+On utilisera les indices suivants~:
+\begin{itemize}
+\item Les indices $\alpha,\beta,\gamma,\delta$ vont varier entre $1$ et $2n$ (soit $2n$ indices). Ils correspondront aux tenseurs sur $X$.
+\item Les indices $a,b,c,d$ vont varier entre $0$ (sur $\Pro^1$) et $2n$ (soit $N$ indices). Ils correspondront aux tenseurs sur $Z$.
+\item Les indices $p,q,r,s$ vont varier entre $1$ et $4n+1$ en évitant $2n+1$ (soit $4n$ indices). Ils correspondront aux tenseurs réels sur $X$. Tout indice $p$ est de la forme $\alpha$ ou $\alpha+N$.
+\item Les indices $i,j,k,l$ vont varier entre $0$ et $4n+1$ (soit $2N$ indices). Ils correspondront aux tenseurs réels sur $Z$. Les indices $i=0$ et $i=N$ sont particuliers et correspondent aux tenseurs provenant de $\Pro^1$. Tout indice $i$ est de la forme $a$ ou $a+N$.
+\end{itemize}
+
+\paragraph*{Structure presque-complexe.}La structure presque-complexe $\mathbb{I}$ sur $Z = X \times \Pro^1$ est donnée par~:
+\[
+\mathbb{I} = \left(
+\dfrac{1-\zeta \bar{\zeta}}{1+\zeta \bar{\zeta}}I + \dfrac{\zeta + \bar{\zeta}}{1+\zeta \bar{\zeta}}J + \dfrac{i(\zeta - \bar{\zeta})}{1+\zeta \bar{\zeta}}K \; , \; I_0
+\right)
+\]
+
+\subsection{Les structures complexes $J$ et $K$ sur $X$}
+Les trois structures complexes $I,J,K$ d'une variété hyperkählérienne pointée, doivent satisfaire les relations "quaternioniques". En particulier $K = IJ$ et $IJ = -JI$.
+
+On cherche donc sur $(X,I)$ une structure complexe $J$ satisfaisant la dernière relation.
+
+Sur un ouvert $U$ de $X$ on a des coordonnées complexes $u^\tau$ qui se décomposent en $4n$ coordonnées réelles $x^p$ (par exemple $u^\tau = x^\tau + i x^{\tau+2n}$) qui induisent une trivialisation locale du fibré tangent \[
+T(X_\text{diff})_{\vert U} \cong \bigoplus_p \R \dpp{}{x^p}
+\]
+Dans cette base la structure $I$ est donnée par la matrice
+\[
+\begin{pmatrix}
+0 & -\Id_{2n} \\ 
+\Id_{2n} & 0
+\end{pmatrix} 
+\]
+On va chercher $J$ parmi les matrices qui vérifient $IJ=-JI$ et qui satisfont
+\begin{equation}\label{symplecticJ}
+\sigma(X,Y) = g(JX,Y) + ig(IJX,Y) = g^\C((1+iI)JX,Y)
+\end{equation}
+où $\sigma$ est la forme symplectique sur $(X,I)$ et $g$ est la métrique Ricci-plate obtenue par le théorème de \textsc{Yau}.
+
+Posons $A = J + iK$ \label{A}, alors l'équation précédente se réécrit
+\[
+\sigma(X,Y) = g(AX,Y)
+\]
+Ce qui donne en notation tensorielle
+\[
+\sigma_{pq} = g_{rq}A^r_p
+\]
+On peut dès lors inverser $g$ pour obtenir $A_p^q = \sigma_{pr}g^{rq}$. On peut montrer facilement les propriétés suivantes vérifiées par le tenseur $A$~:
+\begin{enumerate}[\itshape (i)]
+\item $\Re(A) = J$ et $\Im(A) = K$.\label{eqJ}
+\item $A = (1 + iI)J$ et donc $(1-iI)A = 0$. \label{Aproj}
+\item $AI =  -IA$
+\item $A \in \Oo(g) \otimes \C $ \marginpar{interpréter ($iv$)}
+\item $\nabla A = 0$.
+\end{enumerate}
+Le tenseur $A$ est parallèle car $J$ et $K$ le sont. Ce qui s'écrit en notation tensorielle
+\[
+\dpp{A^p_q}{x^r} + \Gamma^p_{sr} A^s_q = 0
+\]
+où les $\Gamma^p_{qr}$ sont les symboles de \textsc{Christoffel} associés à la métrique $g$.
+
+\subsection{Structure complexe sur l'espace des twisteurs}
+En regroupant ce qu'on a obtenu, on peut écrire $\mathbb{I}$ de la façon suivante~:
+\[
+\mathbb{I}_i^j = \left\lbrace
+\begin{array}{cr}
+\dfrac{1-\zeta \bar{\zeta}}{1+\zeta \bar{\zeta}} \ I_i^j + \dfrac{\zeta + \bar{\zeta}}{1+\zeta \bar{\zeta}}\ \Re(A_i^j) + i\dfrac{\zeta - \bar{\zeta}}{1+\zeta \bar{\zeta}}\ I_i^k\Re(A_k^j)  & i,j \notin \{0,N\}\\ 
+1 & (i,j) = (0,N)\\
+-1 & (i,j) = (N,0)\\
+0 & \text{sinon}
+\end{array}\right.
+\]
+où $\zeta = x^0+ix^N$.
+Donc la structure complexe $\mathbb{I}$ est la partie réelle du tenseur suivant que l'on notera $\Upsilon$ avec
+\[
+\Upsilon_p^q = 
+\dfrac{1-|\zeta|^2}{1+|\zeta|^2}
+I_p^q
++
+\dfrac{2\Re(\zeta)}{1+|\zeta|^2}
+A_p^q
+-
+\dfrac{2\Im(\zeta)}{1+|\zeta|^2}
+I_r^qA_p^r
+\]
+
+Cependant
+\[
+\Re(\zeta)A_p^q-\Im(\zeta)I_r^qA_p^r = \left(\Re(\zeta)+i\Im(\zeta) \right)A_p^q - \Im(\zeta)\left(I_r^q+i\delta^r_q\right)A^r_p = \zeta A_p^q
+\]
+d'après la remarque \textit{(\ref{Aproj})}.
+
+Finalement
+\[
+\Upsilon_p^q = \dfrac{1-\zeta \bar{\zeta}}{1+\zeta \bar{\zeta}}\ I_p^q + \dfrac{2\zeta}{1+\zeta \bar{\zeta}}\ A_p^q
+\]
+
+\subsection{Coordonnées naïves et leur $\dbarre$}
+Posons \[
+u^a = \left\lbrace
+\begin{array}{cc}
+x^a + ix^{a+N} & a \neq 0 \\
+\zeta & a = 0
+\end{array}
+\right.
+\]. Les $u^a$ sont des fonctions complexes lisses sur $Z$ qui se restreignent sur $X$ au coordonnées $I$-holomorphes $u^\alpha$.
+Soient de même les $v^a$ des fonctions complexes lisses sur $Z$ qui se restreignent sur $X$ en des coordonnées $J$-holomorphes $v^\alpha$.
+
+Ces applications ainsi définies ne sont clairement pas holomorphes sur $Z$ cependant, les coordonnées $u^a$ par exemple approchent des coordonnées holomorphes au voisinage de la fibre $\zeta = 0$ (qui correspond à $\mathbb{I} = (I,I_0)$). Il est intéressant de préciser cela en calculant le $\dbarre u^a$.
+\marginpar{Calculs intermédiaires}
+\[
+\dbarre u^a = \demi \left( \delta^a_p - \mathbb{I}^{a+N}_p + i(\delta^{a+N}_p + \mathbb{I}^a_p) \right) \dd x^p
+\]
+Remarque  : pas de $\overline{\partial \zeta}$ ! ! 
+
+On peut également remarquer que dans les coordonnées $x^p$, $I^{a+N}_p = \delta^a_p$ et $I^a_p = \delta^{a+N}_p$
+Ainsi
+\[
+2  \Re \dbarre u^a \left(\dpp{}{x^p}\right) = \left(1 - \dfrac{1-\zeta \bar{\zeta}}{1+\zeta \bar{\zeta}}\right) \ \delta^a_p - \dfrac{\zeta + \bar{\zeta}}{1+\zeta \bar{\zeta}}\ \Re(A_{a+N}^p) - i\dfrac{\zeta - \bar{\zeta}}{1+\zeta \bar{\zeta}}\ I_{a+N}^k\Re(A_k^p) 
+\]
+et
+\[
+2  \Im \dbarre u^a \left(\dpp{}{x^p}\right) =
+\left(1 - \dfrac{1-\zeta \bar{\zeta}}{1+\zeta \bar{\zeta}}\right) \ \delta^{a+N}_p + \dfrac{\zeta + \bar{\zeta}}{1+\zeta \bar{\zeta}}\ \Re(A_a^p) + i\dfrac{\zeta - \bar{\zeta}}{1+\zeta \bar{\zeta}}\ I_{a}^k\Re(A_k^p)
+\]  
+
+\subsection{Coordonnées holomorphes approchées}
+Dans les coordonnées $x^p$ considérées, la structure complexe $I$ est constante. Et de plus $I^\alpha_\beta = 0$ et $I^{\alpha+N}_\beta = \delta^\alpha_\beta$.
+Dès lors on peut déterminer le tenseur $\Xi$~:\iffalse
+\[
+\Xi^a_b = \mathbb{I}^{a+N}_b + i \mathbb{I}^a_b = \dfrac{1}{1+|\zeta|^2}\left( (1-|\zeta|^2)\delta^a_b + 2\Re(\zeta A^{a+N}_b) + 2i\Re(\zeta A^a_b) \right)
+\]
+ et ses dérivées~:
+\[
+\dpp{\Xi^a_b}{u^c} =\dfrac{2}{1+|\zeta|^2}\left( \Re(\zeta) \dpp{\Re(A^{a+N}_b)}{u^c} - \Im(\zeta)\dpp{\Im(A^{a+N}_b)}{u^c} + i\Re(\zeta)\dpp{\Re(A^a_b)}{u^c} - i\Im(\zeta)\dpp{\Im(A^{a}_b)}{u^c} \right)
+\]
+pour $c<N$ (car $u^N = \zeta$).
+\fi
+\appendix
+
+\section{Preuve de l'équivalence de certaines conditions d’intégrabilité}\label{preuveintegrabilite}
+
+\paragraph*{Remarque~:} On a toujours $(\dbarre \partial + \partial \dbarre)f = 0$ pour les fonctions $f$, que la structure complexe soit intégrable ou non.
+
+En effet si $\omega = \omega^{1,0} + \omega^{0,1}$ est une $1$-forme décomposée en types pures, on a $\pi^{1,1}\dd \omega = \pi^{1,1}\dd  \omega^{1,0} + \pi^{1,1}\dd \omega^{0,1} = \dbarre \omega^{1,0} + \partial \omega^{0,1}$. Ainsi si $\omega = \dd f$, alors $\omega^{1,0} = \partial f$ et $\omega^{0,1} = \dbarre f$ ; ce qui entraîne
+\[
+0 = \pi^{1,1} \dd \dd f = \dbarre \partial f + \partial \dbarre f
+\]
+La condition que les diagrammes commutent signifie simplement que $\partial^2 = 0$ et $\dbarre^2 = 0$ sur les fonctions.
+
+
+La condition d'intégrabilité est la décomposition $d =  \partial + \dbarre$ pour les $(p,q)$-formes. Autrement dit : la différentielle d'une $(p,q)$-forme s’exprime uniquement en somme de $(p+1,q)$-formes et de $(p,q+1)$-formes. Cependant comme $d$ satisfait la règle de \textsc{Leibnitz}, il suffit de vérifier $d = \partial + \dbarre$ sur les $1$-formes (le résultat pour les fonctions étant trivial).
+
+Une autre approche consiste à vérifier que $(\partial + \dbarre)^2 = 0$ sur les fonctions. \question{Vérifier l'équivalence avec l'intégrabilité} (faire apparaître les torsions analytiques $\theta'$ et $\theta''$ comme demailly). 
+
+\bibliographystyle{amsalpha}
+\bibliography{Demailly.bib}
+
+\iffalse
+\paragraph*{À l'ordre $1$.}
+Pour aller plus loin on pousse le développement de $I^i_j$ à l'ordre supérieur, dans des coordonnées quelconques $y^k$ centrées en $O$
+\[
+I^i_j(y) = I^i_j + \dpp{I^i_j}{y^k} y^k + o(y)
+\]
+(où quand le point est omis, les tenseurs sont évalués en $O$)
+
+L'opérateur $\dbarre$ s'exprime alors
+\[
+(\dbarre f)(y) = \demi \left(
+\dpp{f}{x^i}(y)
+\right)\left(\delta^i_j + i I^{i}_j + i\dpp{I^i_j}{y^k} y^k\right) \dd x^j + o(y)
+\]
+Ce qui pour $f=u^a$ donne
+\[
+(\dbarre u^a)(y) = \dfrac{i}{2}
+\left(
+\delta^a_i + i \delta^{a+n}_i
+\right)
+\left(\dpp{I^i_j}{y^k} y^k\right) \dd x^j + o(y)
+\]
+
+\subsection{Autre approche [MC Duff, \cite{McDuff}] }
+Soit $u \in \Cc^\infty(M)$, alors sa différentielle en un point $x \in M$ induit un morphisme $(T_\R M)_x \rightarrow (T_\R\C)_{u(x)} = (u^*T_\R \C)_x$ et donc un élément \question \[
+\dd u \in \Hom_{\R/M}(T_\R M , u^*(T_\R \C)) =: \Ee_u
+\]
+Ces espaces $\Ee_u$ se recollent en un faisceau (fibré vectoriel de dimension infini)
+\[
+\Ee \longrightarrow \Cc^\infty(M)
+\]
+dont l'opérateur différentiel \og  $\dd$ \fg{} est une section.
+
+D'autre part les structures complexes $I$ et $\iota$ sur $M$ et $\C$ peuvent se voir comme $I \in \Hom_{\R/M}(T_\R M, T_\R M)$ et $\iota \in \Hom_{\R/\C}(T_\R \C, T_\R \C)$. Ainsi pour $u \in \Cc^\infty(M)$, $u^*\iota : u^*T_\R \C \rightarrow u^*T_\R \C$.
+On en déduit que $(u^* \iota) \circ \dd u$ (que l'on notera par abus $\iota \circ \dd u$) et $\dd u \circ J$ appartiennent toujours à $\Ee_u$.
+
+L’opérateur $\dbarre$ est alors défini comme
+\[
+u \mapsto \demi \left(
+\dd u + \iota \circ \dd u \circ J
+\right) \in \Ee_u
+\]
+
+\paragraph*{Complexification.}
+Si on réécrit la version complexifiée de l'argument précédent, la différentielle $\dd u$ induit un opérateur $\C$-linéaire sur $M$ entre fibrés complexes~:
+\[
+\dd u \in \Hom_{\C/M}(T_\C M , u^*(T_\C \C)) =: \Ee^\C_u
+\]
+qui se recollent en un faisceau
+\[
+\Ee^\C \longrightarrow \Cc^\infty(M)
+\]
+D'autre part les structures complexes $I$ et $\iota$ sur $M$ et $\C$ peuvent se voir comme $I \in \Hom_{\C/M}(T_\C M, T_\C M)$ et $\iota = i \in \Hom_{\C/\C}(T_\C \C, T_\C \C) \cong \underline{\C}$. Ainsi pour $u \in \Cc^\infty(M)$, $u^*i = i : u^*T_\C \C \rightarrow u^*T_\C \C$.
+On en déduit que $\dd u \circ J$ et $i\dd u$ appartiennent toujours à $\Ee^\C_u$.
+
+L’opérateur $\dbarre$ est alors défini comme
+\[
+u \mapsto (\dd u) \circ \left( J - i \Id \right)
+\]
+On peut alors remarquer qu'étant donné un $u \in \Cc^\infty(M)$, et $X \in T^{1,0}M$ ($JX = iX$), on a
+\[
+(\dbarre u)(X) = (\dd u)\left( J - i \Id \right)(X) = 0
+\]
+
+Donc ainsi l'opérateur $\dbarre$ est à valeur dans $\Ee'$ où
+\[
+\Ee'_u :=  \Hom_{\C/M}(T^{0,1} M , u^*(T_\C \C)) = \Hom_{\C/M}(T^{0,1} M , \underline{\C}) \cong \Omega^{0,1}
+\]
+Donc $\Ee'_u$ ne dépend plus de $u$, et c'est une section d'un fibré trivial, c'est donc une application
+\[
+\dbarre :  \Cc^\infty(M) \rightarrow \Omega^{0,1}
+\]
+En fait dans notre cas cette approche est un peu triviale …
+On peut quand même remarquer que cette application entre $\Oo_M$-modules est $\Oo_M$-linéaire. Mais ce n'est peut-être pas la bonne approche vu qu'on aimerait définir $\Oo_M$ à partir de $\dbarre$.
+\fi
+\end{document}

@@ -1,0 +1,391 @@
+\documentclass[a4paper,draft]{amsart}
+\usepackage[thm]{dipneuste}
+\geometry{a4paper, hmargin=120pt, vmargin=75pt}
+%\usepackage{showkeys} %INDIQUE LES REFERENCES ET LABELS
+\begin{document}
+\tableofcontents
+
+\pagebreak
+\section{Théorème de \textsc{Frobenius} réel analytique en codimension~$1$}
+
+Le but de cette section est de démontrer de manière effective le théorème de \textsc{Frobenius} dans le cas de la codimension $1$ (pour commencer). On se placera donc dans les hypothèses du théorème suivant~:
+\begin{thm}[\textsc{Frobenius} codimension 1]
+Soit $M$ variété analytique réelle de dimension $n$ et $\omega$ une $1$-forme analytique sur $M$ satisfaisant la condition dite d'\textit{intégrabilité}~:
+\[
+\omega \wedge \dd \omega = 0
+\]
+Alors au voisinage de tout point $\wp \in M$, il existe un plongement $m : \R^{n-1} \rightarrow M$ tel que $0 \mapsto \wp$ et~:
+\[
+m^* \omega = 0\]
+\end{thm}
+\paragraph{Remarque} La condition $m^* \omega = 0$ signifie que l'image de $m$ est une sous-variété dont les espaces tangents s'identifient naturellement aux noyaux de la forme $\omega$. (feuilletage de codimension $1$).
+
+On utilisera les notations tensorielles et la convention de sommation d'\textsc{Einstein}.
+On considère le diagramme suivant~:
+\begin{center}\begin{tikzpicture}
+\matrix (m) [matrix of math nodes, row sep=2em,
+column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+{ \R^{n-1} & M & \\
+  \R^{n-1} & \R^n & \R^n \\ };
+\path[->, font=\scriptsize]
+(m-1-1) edge node[auto] {$\check{m}$} (m-1-2)
+(m-1-1) edge node[auto] {$x$} (m-2-1)
+(m-2-1) edge node[auto] {$m$} (m-2-2)
+(m-1-2) edge node[auto] {$u$} (m-2-2)
+(m-2-2) edge node[auto] {$a$} (m-2-3)
+(m-1-2) edge node[auto] {$\check{a}$} (m-2-3);
+\end{tikzpicture}\end{center}
+\begin{itemize}
+\item $x^i$ désigneront les coordonnées sur $\R^{n-1}$, on utilisera $i,p,q,r$ comme indices associés.
+\item $u^j$ désigneront les coordonnées locales sur $M$ centrées au point $\wp$, on utilisera $j,k,l$ comme indices associés.
+\item $\omega = \check{a}_j \dd u^j$ avec $\check(a)(0) = a(0) \neq 0$.
+\item $\check{m}(0) = \wp$, mais $m(0) = 0$
+\end{itemize}
+
+L'équation que l'on veut résoudre : $\check{m}^*\omega = 0$ se traduit alors dans ces coordonnées~:
+\[
+\forall i, \; \forall x \quad a_j(m(x))\dpp{m^j}{x^i}(x) = 0
+\]
+Le but de cet partie est d'utiliser le caractère analytique de $a$ et analytique escompté de $m$ pour exprimer cette équation degré par degré et ainsi déduire le développement en série entière de $m$.
+
+\subsection{À l'ordre $0$}
+On peut remarquer qu'à l'ordre $0$, l'équation est sous-déterminée~:
+\[
+\forall i, \quad a_j(0)\dpp{m^j}{x^i}(0) = 0
+\]
+On peut donc choisir une base de $\R^n$ dans laquelle ~:
+\[
+a(0)=
+\left(\begin{array}{c}
+1 \\ 
+0 \\ 
+\vdots \\ 
+0
+\end{array} \right)
+\quad \text{ et } \quad
+\left(\dpp{m^j}{x^i}(0)\right)_{1\leq j \leq n,1\leq i\leq n-1} =
+\left(\begin{array}{cccc}
+0 &  &  &  \\ 
+\vdots &  & I_{n-1} &  \\ 
+0 &  &  & 
+\end{array} \right)
+\]
+
+\subsection{À l'ordre $1$}
+\[
+\dfrac{\partial^2 m^1}{\partial x^i \partial x^p} = - \dpp{a_{i+1}}{u^{p+1}}
+\]
+\subsection{À l'ordre $2$}
+On fait l'hypothèse que pour tous les $j \neq 1$, $\partial^2m^j = 0$ (système sous déterminé)
+\[
+\dfrac{\partial^3 m^1}{\partial x^i \partial x^p \partial x^q} = -\dfrac{\partial^2 a_{i+1}}{\partial x^{p+1} \partial x^{q+1}}+2\dpp{a_{i+1}}{u^{p+1}}\dpp{a_1}{u^{q+1}}+\dpp{a_{p+1}}{u^{q+1}}\dpp{a_1}{u^{i+1}}
+\]
+
+\section{Théorème de \textsc{Newlander-Nirenberg} avec données analytiques réelles}
+On fixera dans toute cette partie les notations telles qu'utilisées dans le théorème~:
+\begin{thm}
+Soit $M$ variété analytique réelle de dimension $2n$, et $I \in \End(TM)$ une structure presque complexe ($I^2 = -\Id$) \textbf{intégrable} (cf \ref{integrabilite}).
+
+Alors au voisinage de tout points de $M$ il existe des applications coordonnées $z_1,\cdots z_n: M \rightarrow \C$ centrées en ce points, qui induisent des changements de cartes soient holomorphes, et donc une structure complexe sur $M$
+\end{thm}
+
+\subsection{Intégrabilité \label{integrabilite}}\cite{Godbillon1969,Voisin2002}
+$I$ est \textbf{intégrable} si l'une des conditions équivalentes est satisfaite~:
+\begin{enumerate}[($i$)]
+\item Le tenseur de \textsc{Nijenhuis} défini par~: $N_I(X,Y) := [ I X , I Y ] - I [ X , I Y ] - I [ I X , Y ] + I 2 [ X , Y ]$ est identiquement nul.
+\item Pour tout champ de vecteur complexes $X,Y$ sur $M$ satisfaisant $I^\C X=iX$ et $I^\C Y=iY$, le crochet de \textsc{Lie} $[X,Y]$ satisfait également $I^\C[X,Y] = i[X,Y]$
+\item L'espace tangent $I$-holomorphe $T^{1,0}M := \ker(I^\C -  i\Id) \subset TM \otimes_\R \C$ satisfait $[T^{1,0}M,T^{1,0}M] \subseteq T^{1,0}M$
+\item Pour toute famille $(\omega^\alpha)_\alpha$ de $(1,0)_I$-formes sur $M$ de rang $n$, et pour tout $\alpha$, $\dd \omega^\alpha = \theta_\beta \wedge \omega^\beta$ pour des $1$-formes analytiques $\theta_\beta$.
+\item Le dual de l'espace tangent $I$-holomorphe $\Omega^{1,0}_M \subseteq \Omega^1_M$ satisfait $\dd \Omega^{1,0}_M \subseteq \Omega^1_M \wedge \Omega^{1,0}_M$
+\end{enumerate}
+
+\paragraph{Localité de la condition d'intégrabilité}
+Justifier qu'on puisse se ramener à un ouvert $U \subset \R^{2n}$.\marginpar{À faire, cf \cite{Weil1971,Voisin2002}}
+
+\subsection{Notations et définitions}
+Par la remarque précédente, on se ramène à $M = U$ ouvert de $\R^{2n}$ contenant $0$, et l'on suppose donné une famille $\omega^1,\cdots \omega^n$ de $1$-formes à valeurs complexes qui définissent la structure $I$ sur $M$ de la manière suivante~: Si $X$ est un champ de vecteur lisse complexe sur $M$, alors~:
+\marginpar{Autre lien entre $\omega$ et $I$ ?}
+\[
+I^\C X = -iX \quad \ssi \quad \forall \alpha, \; \omega^\alpha(X) = 0
+\]
+On cherche $m : \C^n \rightarrow U$ tel que $\forall \alpha, m^* \omega^\alpha = 0$
+On suivra les notations du diagramme suivant~:
+\begin{center}\begin{tikzpicture}
+\matrix (m) [matrix of math nodes, row sep=2em,
+column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+{ \C^n & U &\\
+  \C^n & \R^{2n} & \C^{2n} \\ };
+\path[->, font=\scriptsize]
+(m-1-1) edge node[auto] {$m$} (m-1-2)
+(m-1-1) edge node[auto] {$(x^i)_i$} (m-2-1)
+(m-1-2) edge node[auto] {$(u^j)_j$} (m-2-2)
+(m-2-2) edge node[below] {$a^\alpha$} (m-2-3);
+\end{tikzpicture}\end{center}
+De même que précédemment~:
+\begin{itemize}
+\item $x^i$ désigneront les coordonnées canoniques holomorphes sur $\C^{n}$, on utilisera $i,p,q,r = 1 \cdots n$ comme indices associés. De plus les coordonnées antiholomorphes $(\bar{x}^i)_i$ associées seront notées $(x^{i+n})_i$. 
+\item $u^j$ désigneront les coordonnées locales sur $U$ centrées en $0$, on utilisera $j,k,l = 1 \cdots 2n$ comme indices associés.
+\item $\omega^\alpha = a^\alpha_j \dd u^j$ ; on utilisera $\alpha, \beta, \gamma = 1 \cdots n$ comme indices associés.
+\item $m(0) = 0$.
+\end{itemize}
+
+
+\subsection{Développement en séries entières}
+Quand les dérivées partielles sont prises en $0$, on omettra le $(0)$ dans $\dpp{}{}(0)$, à l'inverse si la formules est vraie pour tout $x$ on le signalera par $\dpp{}{}(x)$.
+
+On veut $m$ paramétrage holomorphe de $U$, en particulier on suppose nuls tous les $\partial_{x^{i+n}}m$ etc. ($\bar\partial m = 0$)
+\begin{eqnarray}
+m^j(x) &=& \dpp{m^j}{x^i}x^i + \demi \dfrac{\partial^2 m^j}{\partial x^i \partial x^p}x^ix^p + \dfrac{1}{6} \dfrac{\partial^3 m^j}{\partial x^{i,p,q}}x^i x^p x^q + \cdots \\
+a_j^\alpha(u) &=& a_j^\alpha(0) + \dpp{a_j^\alpha}{u^k}u^k + \demi \dfrac{\partial^2 a_j^\alpha}{\partial u^k \partial u^l}u^k u^l + \cdots \\
+\dpp{m^j}{x^i}(x) &=& \dpp{m^j}{x^i} + \dfrac{\partial^2 m^j}{\partial x^i \partial x^p}x^p + \demi \dfrac{\partial^3 m^j}{\partial x^{i,p,q}}x^p x^q + \cdots
+\end{eqnarray}
+
+Ainsi en réunissant on obtient~:
+\begin{eqnarray*}
+a_j^\alpha(m(x))\dpp{m^j}{x^i}(x) &=& \left(a_j^\alpha(0)\dpp{m^j}{x^i}\right)\\
+ & + & \left(
+ \dpp{a_j^\alpha}{u^k}\dpp{m^k}{x^p}\dpp{m^j}{x^i} + a_j^\alpha(0)\dfrac{\partial^2 m^j}{\partial x^i \partial x^p}
+  \right)x^p \\
+ & + & \left( 
+ \demi \dfrac{\partial^2 a_j^\alpha}{\partial u^k \partial u^l}\dpp{m^k}{x^p}\dpp{m^l}{x^q}\dpp{m^j}{x^i} 
+ \right.\\
+ & &\left. + \dpp{a_j^\alpha}{u^k}\left( \dfrac{\partial^2 m^j}{\partial x^i \partial x^p}\dpp{m^k}{x^q} + \demi \dfrac{\partial^2 m^k}{\partial x^p \partial x^q}\dpp{m^j}{x^i}
+ \right)+ \demi a_j^\alpha(0) \dfrac{\partial^3 m^j}{\partial x^{i,p,q}}
+ \right)x^px^q \\
+ & + & o(|x|^2)
+\end{eqnarray*}
+
+\subsection{Système sous-déterminé}
+On peut remarquer que l'on dispose de à chaque degré de $2$ fois plus d'inconnues que d'équations (cf. \ref{liberte}) ainsi pour régler se problème on est amené à choisir des valeurs (souvent $0$) pour certaines inconnues.
+\paragraph{Cas degré $0$, condition sur $a$ et $Dm$.} L'équation au degré $0$ est~:
+\[
+a_j^\alpha(0)\dpp{m^j}{x^i}(0) = 0 \qquad \forall i
+\]
+On remarque que cette équation est invariante si on remplace $m$ par $m \circ N$ où $N$ est une application linéaire inversible sur $\C^n$. On peut donc choisir une base de $\C^{2n}$ (arrivée) et une base de $\C^n$ (départ) telle que
+\begin{eqnarray}
+a_j^\alpha &=& \delta_j^\alpha \\
+\dpp{m^j}{x^i} &=& \delta^j_{i+n}
+\end{eqnarray} 
+
+\paragraph{Cas de degré $1$.}\marginpar{Ici la condition d'intégrabilité devrait permettre de montrer que $D^2m$ est symétrique}
+L'équation au degré $1$ s'écrit~:
+\[
+\dpp{a_j^\alpha}{u^k}\dpp{m^k}{x^p}\dpp{m^j}{x^i} + a_j^\alpha(0)\dfrac{\partial^2 m^j}{\partial x^i \partial x^p} = 0
+\]
+Ce qui donne, sous les hypothèses précédentes~:
+\[
+\forall \alpha, i, p \quad \dfrac{\partial^2 m^\alpha}{\partial x^i \partial x^p} = -\dpp{a_{i+n}^\alpha}{u^{p+n}} \in \C
+\]
+Encore une fois on se retrouve avec $n^3$ equations pour $2n^3$ inconnues~: les $(\partial_{i,p}m^j)_{j;i,p}$.
+On pose alors~:
+\[
+\forall \alpha \leq n \quad \dfrac{\partial^2 m^{\alpha+n}}{\partial x^i \partial x^p} = 0
+\]
+
+\paragraph{Cas en degré $2$.} L'équation en degré $2$ s'écrit sous les hypothèses précédentes~:
+\[
+\dfrac{\partial^3 m^\alpha}{\partial x^{i,p,q}} + \dfrac{\partial^2 a^\alpha_{i+n}}{\partial u^{p+n} \partial u^{q+n}} - 2\dpp{a^\alpha_\beta	}{u^{q+n}}\dpp{a^\beta_{i+n}}{u^{p+n}} - \dpp{a^\alpha_{i+n}}{u^\beta}\dpp{a^\beta_{q+n}}{u^{p+n}} =0
+\]
+On impose alors $\partial_{i,p,q}m^{\alpha + n} = 0$ pour les $n^4$ equations manquantes.
+
+\paragraph{Cas de degré $d \geq 2$.} On peut montrer que les équations obtenues au degré $d$ sont toujours de la forme~:
+\[
+\dfrac{\partial^{d+1}m^\alpha}{\partial \cdots} = \phi\left(a^j_k, \partial a^j_k, \cdots, \partial^{d}a^j_k\right)
+\]
+Il manque à chaque fois $n^{d+2}$ equations correspondants aux valeurs de $\partial^d m^{\alpha + n}$, que l'on imposera à $0$.
+
+\subsection{Bilan}
+On résume les informations obtenues sur $m$ dans le tableau suivant ; à cela il faut ajouter la donnée que $m$ est holomorphe (i.e. $\bar{\partial}m = 0$).
+\\%
+\begin{tabular}{|c|c||c|c|}
+\hline 
+Expression & Valeur & Expression & Valeur \\ 
+\hline 
+\rule[-4ex]{0pt}{8ex}
+ $m^\alpha$ & $0$ & $m^{\alpha+n}$ & $0$ \\ 
+\hline 
+\rule[-4ex]{0pt}{8ex}
+ $\dpp{m^\alpha}{x^i}$ & $0$ & $\dpp{m^{\alpha+n}}{x^i}$ & $\delta^\alpha_i$ \\ 
+\hline 
+\rule[-4ex]{0pt}{8ex}
+ $\dfrac{\partial^2 m^\alpha}{\partial x^i \partial x^p}$ & $-\dpp{a^\alpha_{i+n}}{u^{p+n}}$ & $\dfrac{\partial^2 m^{\alpha+n}}{\partial x^i \partial x^p}$ & $0$ \\ 
+\hline 
+\rule[-4ex]{0pt}{8ex}
+ $\dfrac{\partial^3 m^\alpha}{\partial x^i \partial x^p \partial x^q}$ & $-\dfrac{\partial^2 a^\alpha_{i+n}}{\partial u^{p+n} \partial u^{q+n}} + 2\dpp{a^\alpha_\beta	}{u^{q+n}}\dpp{a^\beta_{i+n}}{u^{p+n}} + \dpp{a^\alpha_{i+n}}{u^\beta}\dpp{a^\beta_{q+n}}{u^{p+n}}$ & $\dfrac{\partial^3 m^{\alpha+n}}{\partial x^i \partial x^p \partial x^q}$ & $0$ \\ 
+\hline 
+\rule[-4ex]{0pt}{8ex}
+ $\dfrac{\partial^4 m^\alpha}{\partial x^i \partial x^p \partial x^q \partial x^r}$ & $\cdots$ & $\dfrac{\partial^4 m^{\alpha+n}}{\partial x^i \partial x^p \partial x^q \partial x^r}$ & $0$ \\ 
+\hline 
+\end{tabular} 
+
+\subsection{Inversion et fonctions coordonnées}
+\begin{center}\begin{tikzpicture}
+\matrix (m) [matrix of math nodes, row sep=2em,
+column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+{ \C^n & \R^{2n} & \C^{2n} \\
+  \C^n & \R^{2n} & \C^{2n} \\ };
+\path[->, font=\scriptsize]
+(m-1-1) edge node[auto] {$m$} (m-1-2)
+(m-1-1) edge[-,style=double] node[auto] {id} (m-2-1)
+(m-2-1) edge node[auto] {$m$} (m-2-2)
+(m-1-2) edge[-,style=double] node[auto] {} (m-2-2)
+(m-1-2) edge[] node[auto] {$\subseteq$} (m-1-3)
+(m-2-2) edge[] node[auto] {$\subseteq$} (m-2-3)
+(m-1-3) edge node[auto] {$p_{\R^{2n}}$} (m-2-3)
+(m-1-3) edge node[auto] {$z$} (m-2-1);
+\end{tikzpicture}\end{center}
+On note $z:\C^{2n} \rightarrow \C^n$ telle que la restriction à $\R^{2n}$ soit l'inverse de $m$, on doit donc avoir pour tout $x \in \C^n$, $z(m(x)) = x$ et $\forall u \in \R^{2n}$, $m(z(u)) = u$. On développera formellement $m$ de la façon suivante~:
+\[
+m^j(\underline{x}) = 0 + \mu^j_p x^p + \mu^j_{pq} x^p x^q + \cdots = \sum_{d \geq 0} \sum_{|\underline{k}| = d} \mu^j_{\underline{k}}\underline{x}^{\underline{k}}
+\]
+Comme $m$ est holomorphe par construction seul des puissances de $x$ apparaissent dans son développement.
+Cependant on écrira le développement de $z$ en fonction des coordonnées $u$ et $\bar{u}$ car a priori $z$ n'est pas holomorphe pour la structure sur $\C^{2n}$.
+\[
+z^i = z^i(0) + 
+\dpp{z^i}{u^j}u^j + \dpp{z^i}{\bar{u}^j}\bar{u}^j
++ \demi \dppp{z^i}{u^j}{u^k}u^ju^k + \dppp{z^i}{u^j}{\bar{u}^k}u^j\bar{u}^k + \demi \dppp{z^i}{\bar{u}^j}{\bar{u}^k}\bar{u}^j\bar{u}^k + \cdots
+\]
+Pour simplifier les notations on pose $u^{j+2n} = \bar{u}^j$ et on utilisera les indices $\tau, \kappa = 1 \cdots 4n$ pour $u$.
+\[
+z^i = z^i(0) + \dpp{z^i}{u^\tau}u^\tau +
+\demi \dppp{z^i}{u^\tau}{u^\kappa} u^\tau u^\kappa + \cdots
+\]
+Et de plus $m^{j+2n} = \bar{m}^{j}$\marginpar{En cours de correction}
+\begin{eqnarray*}
+x^i &=& z^i(m(x))\\
+    &=& z^i(0) + \dpp{z^i}{u^\tau}m^\tau(x) + \demi\dfrac{\partial^2 z^i}{\partial u^\tau \partial u^\kappa}m^\tau(x)m^\kappa(x) + \cdots\\
+    &=& 0\\
+    & & + \left(\dpp{z^i}{u^j}\mu^j_p \right) x^p +  \left(\dpp{z^i}{\bar{u}^j}\bar{\mu}^j_p \right) \bar{x}^p\\
+    & & + \left(\dpp{z^i}{u^j}\mu^j_{pq} + \demi\dfrac{\partial^2 z^i}{\partial u^j \partial u^k}\mu^j_p \mu^k_q \right)x^p x^q 
++ \left(\dpp{z^i}{\bar{u}^j}\bar{\mu}^j_{pq} + \demi\dfrac{\partial^2 z^i}{\partial \bar{u}^j \partial \bar{u}^k}\bar{\mu}^j_p \bar{\mu}^k_q \right)\bar{x}^p \bar{x}^q\\
+    & & \qquad + \left(\dfrac{\partial^2 z^i}{\partial \bar{u}^j \partial \bar{u}^k}\bar{\mu}^j_p \mu^k_q \right)\bar{x}^p x^q\\
+    & & + \left(\dpp{z^i}{u^j}\mu^j_{pqr} + \dfrac{1}{12}\dfrac{\partial^2 z^i}{\partial u^j \partial u^k}\left(\mu^j_p \mu^k_{qr} + \mu^j_q \mu^k_{pr} + \mu^j_r \mu^k_{pq}
+    \right) + \dfrac{1}{6}\dfrac{\partial^3 z^i}{\partial u^j \partial u^k \partial u^l}\mu^j_p \mu^k_q \mu^l_r \right) x^p x^q x^r\\
+    & & + \cdots
+\end{eqnarray*}
+
+D'où les équations suivantes~:
+\begin{eqnarray*}
+z^i(0) &=& 0\\
+\dpp{z^i}{u^j}\mu^j_p &=& \delta^i_p\\
+\dpp{z^i}{\bar{u}^j}\bar{\mu}^j_p &=& 0\\
+\dppp{z^i}{u^j}{u^k}\mu^j_p\mu^k_q + \dpp{z^i}{u^j}\mu^j_{pq} &=& 0
+\end{eqnarray*}
+
+On ne récupère pas ainsi toute l'information car par exemple à l'ordre $1$, on a~: $\mu_p^j = \delta_{p+n}^j$ donc on ne connaîtra les $\partial_j z$ que pour $j = p+n \in \{n+1,\cdots,2n\}$.
+
+\marginpar{Peut être ces données proviennent de l'équation inverse $m \circ z = id$ ?}
+L'équation inverse est non-linéaire en les dérivées de $z$.
+\section{Tentative sans inversion}
+On cherche $(z^1,\cdots z^n)$ $n$ fonctions analytiques à valeurs complexes telles que~:
+\[
+\dd z^1 \wedge \cdots \wedge \dd z^n = f \omega^1 \wedge \omega^2 \wedge	\cdots \wedge \omega^n
+\]
+pour une certaine fonction $f$ analytique à valeurs complexes.
+
+\paragraph{Bilan} Si on pose $z^\alpha$ et $\omega^\beta$ dans des coordonnées analytiques $u^i$, alors on se retrouve avec $\binom{2n}{n}$ equations de degré $n$ auxquelles on ajoute l'inconnue due à la fonction $f$.\marginpar{abandonné}
+
+\section{Application à l'espace des twisteurs}\marginpar{Ajouter notations : $M$, $Z$, $I,J,K$}
+D'après \cite{Hitchin-Karlhede}, les $(1,0)$-formes pour la structure complexe $\underline{\textbf{I}}$ sur l'espace des twisteurs $Z$ sont les
+\[
+\phi + i \zeta K \phi \quad \text{ pour } \phi \; (1,0)_I\text{-forme} \qquad \text{ et } \; \dd \zeta
+\]
+En particulier si on considère $z^1,\cdots z^{2n}$ des coordonnées holomorphes locales sur $(M,I)$, alors une base des $(1,0)_I$-formes est donnée par les $(\dd z^\nu)_\nu$ ; ainsi base des $(1,0)$-formes sur $Z$ est donnée par~:
+\[
+\dd z^\nu + i \zeta K \dd z^\nu \quad \nu=1 \cdots  2n \qquad \text{ et } \; \dd \zeta
+\]
+En notant $K = K^\nu_\mu$ on pose $\omega^\alpha = (\delta^\alpha_\mu + i \zeta K^\alpha_\mu)\dd z^\mu$ pour $\alpha \leq 2n$ et $\omega^{2n+1} = \dd \zeta$ .
+
+Ainsi avec les notations précédentes
+\[
+a_j^\alpha = \left\lbrace
+\begin{array}{cc}
+\delta^\alpha_j + i \zeta K^\alpha_j & \alpha < 2n+1 \\ 
+\delta^{2n+1}_j & \alpha = 2n+1
+\end{array} 
+\right.
+\]
+\marginpar{Comment déterminer le DSE de $K$ ?}
+\subsection{La matrice $K$} 
+
+
+\section{Liste des questions et inquiétudes}
+\begin{itemize}
+\item Liberté dans le choix de certaines dérivées de $m$
+\item Liberté dans le choix de l'inverse $z$ de $m$ ! ! ! (absurde)
+\item Utilisation de la condition d'intégrabilité à l'ordre seulement $0$, et encore !
+\end{itemize}
+
+
+\pagebreak
+\appendix
+\section{Justification des degrés de liberté supplémentaires}\label{liberte}
+On a une variété presque-complexe intégrable et on veut paramétrer cette variété localement depuis un ouvert de $\C^n$. Il n'existe pas de paramétrage canonique, comme on peut le voir dans l'exemple suivant où l'on prend une variété déjà complexe~:
+\[
+M = \ens{(z_1,z_2) \in \C^2}{(z_1+1)^2 + z_2^2 = 1}
+\]
+Cette sous-variété de dimension $1$ de $\C^2$ vient avec une coordonnée complexe $z$ et deux coordonnées réelles $(u^1,u^2)$ centrées en $(0,0)$~:
+\begin{eqnarray*}
+z &=& z_1 + i z_2 \\
+u^1 &=& \Re(z) = \Re(z_1) - \Im(z_2) \\
+u^2 &=& \Im(z) = \Im(z_1) + \Re(z_2)
+\end{eqnarray*}
+On peut en effet localement retrouver $z_1,z_2$ à partir de $z$~:
+\begin{eqnarray*}
+(1+z)(z_1+1-iz_2) &=& ((z_1+1)+iz_2)((z_1+1)-iz_2) = (z_1+1)^2 + z_2^2 = 1\\
+z_1 &=& \demi\left(
+z + \dfrac{1}{1+z} - 1
+\right)\\
+z_2 &=& \dfrac{1}{2i}\left(
+z - \dfrac{1}{1+z} + 1
+\right)
+\end{eqnarray*}
+On cherche $m$ et $\tilde{m}$ deux paramétrages d'un voisinage de $(0,0)$ dans $M$ qui soient holomorphes, c'est-à-dire tels que \[
+\dpp{m}{\bar{z}} = \dpp{\tilde{m}}{\bar{z}} = 0
+\]
+Par exemple~:
+\begin{eqnarray*}
+m(z,\bar{z}) &=& \demi\left(\left(
+z + \dfrac{1}{1+z} - 1
+\right), \left(
+z - \dfrac{1}{1+z} + 1
+\right)\right)\\
+\tilde{m}(z,\bar{z}) &=& (\cosh(z)-1,i\sinh(z))
+\end{eqnarray*}
+Alors $\tilde{m}(z) = m(\exp(z)-1)$. Ainsi les deux fonctions sont holomorphes. Pourtant ce sont deux paramétrages différents d'un voisinage de $(0,0)$ dans $M$.
+
+En fait j'ai utilisé qu'il y a deux paramétrages différents (entre autre) d'un voisinage de $0$ dans $\C$ donnés par $id$ et $z \mapsto \exp(z)-1$.
+
+\section{La condition d'intégrabilité en codimension $1$}
+L'hypothèse $\omega \wedge \dd \omega = 0$ se traduit dans la base des $\dd u^j$~:
+\[
+a_j\dpp{a_k}{u^l} \dd u^j \wedge \dd u^k \wedge \dd u^l = 0
+\]
+Ce qui donne en identifiant dans la base de $\Omega^3_{M,\R}$ donnée par $(\dd u^j \wedge \dd u^k \wedge \dd u^l)$ pour $1 \leq j <k <l \leq n$~:
+\[
+a_j \left(\dpp{a_k}{u^l} - \dpp{a_l}{u^k} \right)+a_k \left(\dpp{a_l}{u^j} - \dpp{a_j}{u^l} \right)+a_l \left(\dpp{a_j}{u^k} - \dpp{a_k}{u^j} \right) = 0
+\]
+
+\section{La condition d'intégrabilité dans le cas complexe de codimension $n$}
+On note $\omega = \omega^1 \wedge \omega^2 \wedge \cdots \wedge \omega^n$, la condition d'intégrabilité s'écrit alors~:
+\[
+\forall \alpha, \; \dd \omega^\alpha \wedge \omega = 0
+\]
+
+Le lemme de \textsc{De Rham} nous donne l'existence (effective) de $1$-formes analytiques $\theta_\beta^\alpha$ sur $U$ telles que~:
+\[
+\forall \alpha, \; \dd \omega^\alpha = \theta_\beta^\alpha \omega^\beta
+\]
+
+En décomposant $\theta_\beta^\alpha = t_{\beta,j}^\alpha \dd u^j$ on peut écrire~:
+\[
+\dpp{a^\alpha_j}{u^k} - \dpp{a^\alpha_k}{u^j} = t_{\beta,j}^\alpha a^\beta_k - t_{\beta,k}^\alpha a^\beta_j
+\]
+
+
+\pagebreak
+%\nocite{*}
+\bibliographystyle{amsalpha}
+\bibliography{./Integrability_of_cmplx_structures}
+
+\end{document}

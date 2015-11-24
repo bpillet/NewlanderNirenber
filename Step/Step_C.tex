@@ -1,0 +1,65 @@
+\documentclass[12pt,draft]{amsart}
+\usepackage[couleur,draft]{amsdip}%ct%thm%couleur%draft%minimal
+
+\geometry{a4paper, hmargin=.07 \paperwidth, vmargin=.10 \paperheight}
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+
+\setcounter{secnumdepth}{5}
+\renewcommand{\thesubsection}{\bf \arabic{section}.\arabic{subsection}}
+\numberwithin{equation}{subsection}
+
+\renewcommand{\Re}{\texttt{Re}}
+\renewcommand{\Im}{\texttt{Im}}
+
+\begin{document}
+\section{Coordonnées holomorphes approchées}
+On se donne une variété hyperkählérienne $(X,g,I,J,K)$. On notera $\omega_L$ la forme de Kähler associée à la structure complexe $L$, $\sigma = \omega_J +  i \omega_K$ la forme symplectique et $\nabla$ la connexion de Levi-Civita de la métrique.
+
+\subsection{} Soit $O \in X$. Soient $v$ ($=u^0$) et $w$ ($=u^1$) deux fonctions définies sur un voisinage de $O$ à valeur dans $\C^n$, on les considérera comme coordonnées, mais on notera en cas de besoin $u^{\epsilon} = (u^{\epsilon,i})_{1\leq i \leq n}$.
+
+\subsection{Caractère holomorphe}\label{holo} On supposera que dans la base $\dd v, \dd w, \dd \bar{v}, \dd \bar{w}$, la matrice de la structure complexe $I$ s'écrit
+\begin{equation}
+\begin{bmatrix}
+i &  &  &  \\ 
+ & i &  &  \\ 
+ &  & -i &  \\ 
+ &  &  & -i
+\end{bmatrix} 
+\end{equation}
+Cela revient à demander que $v$ et $w$ forment une carte $I$-holomorphe au voisinage de $O$.
+
+\subsection{Caractère normal}\label{normal} On demande de plus que les coordonnées $u$ soient normales, c'est-à-dire (pour nous) simplement que
+\begin{equation}
+\nabla_{\frac{\partial \hfill}{\partial u^{\epsilon,i}}}\dpp{}{u^{\epsilon,j}} = 0
+\end{equation}
+en $O$ pour tout $\epsilon = 0$ ou $1$ et tout $0 \leq i,j \leq n$.
+
+L'existence de telles coordonnées provient du caractère kählérien du couple $(g,I)$
+
+Une conséquence immédiate est que les symboles de Christoffel de la métrique s'annulent en $O$.
+
+\subsection{Réduction de $J(O)$} On sait que $IJ=-JI$ et donc on en déduit qu'en $O$ la matrice de $J$ est de la forme
+\begin{equation}
+\begin{bmatrix}
+0 & A \\ 
+-A^{-1} & 0
+\end{bmatrix} = 
+\begin{bmatrix}
+A & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+0 & 1 \\
+-1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+A^{-1} & 0 \\
+0 & 1
+\end{bmatrix}
+\end{equation}
+où $A$ est une matrice carrée de taille $2n$ à coefficients complexes. Ainsi, en posant le changement de variable $u' =  Au$, on a $\dd u' = A \dd u$ et $\dd \bar{u}' = \bar{A} \dd \bar{u}$
+
+
+\end{document}

@@ -1,0 +1,178 @@
+\documentclass[11pt,makeidx]{amsart}%		twocolumn
+\usepackage[couleur]{amsdip}%								ct, thm, couleur, draft, minimal
+
+\selectlanguage{english}
+%\geometry{a4paper, hmargin=.07 \paperwidth, vmargin=.10 \paperheight}
+%\geometry{a4paper, hmargin=0.18 \paperwidth, vmargin=0.18 \paperheight}
+
+%\setcounter{secnumdepth}{5}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\numberwithin{equation}{subsection}
+%\renewcommand{\theequation}{\thesubsection.\arabic{equation}}
+
+\renewcommand{\Re}{\texttt{Re}}
+\renewcommand{\Im}{\texttt{Im}}
+
+\title{}
+
+\begin{document}
+\section{}
+\subsection{Context} Let $J$ be a complex structure on $X$ satisfying $IJ=-JI$ and such that $(X,g,J)$ is Kähler. Therefore 
+\begin{equation}\label{parallel}
+\nabla J = 0
+\end{equation}
+and moreover one can take coordinates $x^a$ on $X$ in a neighboorhood of $O$ such that
+\begin{equation}\label{semi-normal}
+\forall a, b \quad 
+\nabla_{\partial_a} \partial_b = 0
+\end{equation}
+at the point $O$. Such coordinate need not be normal at $O$ ($g_{ij} \neq \delta_{ij}$).
+\subsection{Vanishing of the first derivative} In such coordinate, \eqref{parallel} readily gives
+\begin{equation}\label{first_derivative}
+\partial_a J^j_i |_O = 0
+\end{equation}
+Indeed, \eqref{semi-normal} implies the vanishing of the Christoffel symbols $\Gamma^c_{ab}$ at $O$ and parallelism given by \eqref{parallel} reads
+\begin{equation}
+\partial_a J^j_i = - \Gamma^j_{ak} J^k_i + \Gamma^k_{ai} J^j_k
+\end{equation}
+which therefore goes to $0$ at $O$.
+\subsection{Second derivative of the tensor $J$} One wants to compute higher derivative of the tensor $J$ at $O$
+\begin{equation}\label{second_derivative}
+\partial_b  \partial_a J_i^j \vert_O
+\end{equation}
+Take $A = \partial_a$, $B= \partial_b$, $X=\partial_i$, $Y = \partial_j$, then
+\begin{equation}
+\partial_b \partial_a \left( J^k_i g_{kj} \right) = B\left( A \left( g\left( JX, Y \right) \right) \right)
+\end{equation}
+The right-hand side can be expanded as follows
+\begin{align*}
+\partial_b \partial_a \left( J^k_i g_{kj} \right) &= B\left( A \left( g\left( JX, Y \right) \right) \right) \\
+&= B\left( g\left( \nabla_A(JX), Y \right) +  g\left(JX, \nabla_AY \right)\right) \\
+&= g\left( \nabla_B\nabla_A(JX), Y \right) 
+	+ g\left( \nabla_A(JX), \nabla_BY \right) 
+	+  g\left(\nabla_B(JX), \nabla_AY \right)
+	+  g\left(JX, \nabla_B\nabla_AY \right) \\
+\end{align*}
+by using the parallelism of the metric $g$ under the Levi-Civita connection $\nabla$.
+
+Moreover \eqref{parallel} gives for all vector $C$ and vector field $Z$,
+\begin{equation}\label{nablaJZ}
+\nabla_C (J Z ) = J (\nabla_C Z)
+\end{equation}
+
+Combining the equations above with \eqref{semi-normal} yields
+\begin{equation}\label{righthandside}
+\partial_b \partial_a \left( J^k_i g_{kj} \right) \vert_O = g\left( J\nabla_B\nabla_A X, Y \right) +  g\left(JX, \nabla_B\nabla_AY \right)
+\end{equation}
+
+On the other hand, 
+\begin{equation}
+\partial_b \partial_a \left( J^k_i g_{kj} \right) = 
+g_{kj} \left(\partial_b \partial_a J^k_i\right)
++ \left( \partial_a J^k_i \right) \left(\partial_b g_{kj} \right)
++ \left( \partial_b J^k_i \right) \left(\partial_a g_{kj} \right)
++ J^k_i \left(\partial_b \partial_a g_{kj}\right)
+\end{equation}
+As for $x$ goes to $O$, \eqref{first_derivative} yields
+\begin{equation}\label{lefthandside}
+\partial_b \partial_a \left( J^k_i g_{kj} \right)\vert_O = 
+g_{kj} \left(\partial_b \partial_a J^k_i\right)\vert_O 
++ J^k_i \left(\partial_b \partial_a g_{kj}\right)\vert_O
+\end{equation}
+
+\subsection{The computation of $\nabla_B \nabla_A X$}
+In all generality, one has
+\begin{equation}\label{Christoffel}
+\nabla_C Z = C^a \left(\nabla_a X\right)^k = C^a\left(\partial_a Z^k + \Gamma^k_{al} Z^l \right)\partial_k
+\end{equation}
+Hence, with $C=B= \partial_b$
+\begin{equation}
+\nabla_B Z = \left(\partial_b Z^k + \Gamma^k_{bl} Z^l \right)\partial_k
+\end{equation}
+Applying this to $Z = \nabla_A X=\left(\partial_a \delta^k_i + \Gamma^k_{al} \delta^l_i \right)\partial_k = \Gamma^k_{ai}\partial_k$, one finally obtains
+\begin{equation}
+\nabla_B \nabla_A X = \left( \partial_b \Gamma^k_{ai} + \Gamma^k_{bl}\Gamma^l_{ai} \right) \partial_k
+\end{equation}
+And moreover evaluating in $O$ kills the Christoffel symbols and gives
+\begin{equation}\label{nablaBAX}
+\nabla_B \nabla_A X \vert_O = \partial_b \Gamma^k_{ai} \partial_k
+\end{equation}
+
+And similarly
+\begin{equation}\label{nablaBAY}
+\nabla_B \nabla_A Y \vert_O = \partial_b \Gamma^k_{aj} \partial_k
+\end{equation}
+
+\subsection{Conclusion and links with curvature}
+In this paragraph, all derivative will be implicitly evaluated at $O$.
+
+First by pluggin \eqref{nablaBAX} and \eqref{nablaBAY} in \eqref{righthandside}, one gets
+\begin{equation}\label{righthandside2}
+J^l_k g_{lj} \partial_b \Gamma^k_{ai} + J^l_i g_{kl}\partial_b \Gamma^k_{aj} 
+\end{equation}
+And therefore combininig \eqref{righthandside2} and \eqref{lefthandside} one gets
+\begin{equation}
+g_{kj} \left(\partial_b \partial_a J^k_i\right)
++ J^k_i \left(\partial_b \partial_a g_{kj}\right) = J^l_k g_{lj} \partial_b \Gamma^k_{ai} + J^l_i g_{kl}\partial_b \Gamma^k_{aj} 
+\end{equation}
+which yields
+\begin{equation}\label{final}
+\partial_b  \partial_a J_i^j = J^j_k \partial_b \Gamma^k_{ai} +g^{jm} g_{kl}J^l_i \partial_b \Gamma^k_{am} - g^{jm}J^k_i \left(\partial_b \partial_a g_{km}\right)
+\end{equation}
+
+The Riemann curvature tensor express in $O$ in the coordinates $x^a$
+\begin{equation}
+R^k_{mab} = \partial_a \Gamma^k_{bm} - \partial_b \Gamma^k_{am}
+\end{equation}
+keeping in mind the symmetry of the Christoffel symbols, namely
+\begin{equation}
+\Gamma^k_{ij} = \Gamma^k_{ji}
+\end{equation}
+And
+\begin{equation}
+\partial_b \partial_a g_{km} =  -\dfrac{1}{3}\left( 
+R_{kbma} - R_{kamb}
+\right)
+\end{equation}
+Hence
+\begin{equation}
+g^{jm} \left(\partial_b \partial_a g_{km}\right) = -\dfrac{1}{3}\left( 
+g^{jm}R_{makb} - g^{jm}R_{mbka}
+\right)
+=-\dfrac{1}{3}\left( 
+R^j_{akb} - R^j_{bka}
+\right)
+\end{equation}
+
+
+After some manipulation one gets
+\begin{equation}\label{final2}
+\partial_b  \partial_a J_i^j = J^j_k \partial_b \Gamma^k_{ai} + J^l_ig_{kl}g^{jm} \partial_b \Gamma^k_{am} +\dfrac{1}{3}\left( 
+R^j_{akb} - R^j_{bka}
+\right)J^k_i
+\end{equation}
+which only depends on $J(O)$ and on the curvature and the christoffel symbols of $g$. For instance assuming 
+…
+
+\begin{equation}
+\partial_b  \partial_a J_i^j = J^l_k \left(
+\delta^j_l \partial_b \Gamma^k_{ai} + \delta^k_i \left(
+g_{pl}g^{jm} \partial_b \Gamma^p_{am} +\dfrac{1}{3}\left( 
+R^j_{alb} - R^j_{bla}
+\right)
+\right)
+\right)
+\end{equation}
+
+\appendix
+\bigskip
+\section{other relations}
+Orthogonality of $J$
+\begin{equation}
+g(JZ,Z') = -g(Z,JZ')
+\end{equation}
+in coordinates
+\begin{equation}
+g_{kl}J^l_i = -J^l_k g_{li}
+\end{equation}
+\end{document}

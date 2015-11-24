@@ -1,0 +1,360 @@
+\documentclass[a4paper,draft]{amsart}
+\usepackage[thm,couleur]{dipneuste}
+\geometry{a4paper, hmargin=120pt, vmargin=75pt}
+%\usepackage{showkeys} %INDIQUE LES REFERENCES ET LABELS
+
+\title[Newlander-Nirenberg effectif]{Th\'eor\`eme de Newlander-Nirenberg effectif\\ avec donn\'ees analytiques\\
+et\\
+Application \`a l'espace des twisteurs}
+%\author{Basile Pillet} 
+%\address{Basile Pillet, Université Rennes 1}
+%\email{basile.pillet@univ-rennes1.fr}
+\date\today
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Cadre et théorie}
+Soit $M$ une variété analytique réelle de dimension $2n$ munie de $I \in \End(TM)$ une structure presque complexe ($I^2 = -\Id$) analytique \textbf{intégrable} (cf \ref{integrabilite}).
+
+\subsection{Intégrabilité d'une structure presque complexe\label{integrabilite}}\cite{Godbillon1969,Voisin2002}
+Une structure presque complexe $I$ est \textbf{intégrable} si l'une des conditions équivalentes est satisfaite~:
+\begin{enumerate}[($i$)]
+\item Le tenseur de \textsc{Nijenhuis} défini par~: $N_I(X,Y) := [ I X , I Y ] - I [ X , I Y ] - I [ I X , Y ] + I^2 [ X , Y ]$ est identiquement nul.
+\item Pour tout champ de vecteur complexes $X,Y$ sur $M$ satisfaisant $I^\C X=iX$ et $I^\C Y=iY$, le crochet de \textsc{Lie} $[X,Y]$ satisfait également $I^\C[X,Y] = i[X,Y]$
+\item L'espace tangent $I$-holomorphe $T^{1,0}M := \ker(I^\C -  i\Id) \subset TM \otimes_\R \C$ satisfait $[T^{1,0}M,T^{1,0}M] \subseteq T^{1,0}M$
+\item Pour toute famille $(\omega^\alpha)_\alpha$ de $(1,0)_I$-formes sur $M$ de rang $n$, et pour tout $\alpha$, $\dd \omega^\alpha = \theta_\beta \wedge \omega^\beta$ pour des $1$-formes analytiques $\theta_\beta$.
+\item Le dual\footnote{La somme directe $TM \otimes \C  = T^{1,0} \oplus T^{0,1}$ induit une décomposition du dual $Omega^1_M = (T^{1,0})^\vee \oplus (T^{0,1})^\vee = \Omega_M^{1,0} \oplus  \Omega_M^{0,1} $} de l'espace tangent $I$-holomorphe $\Omega^{1,0}_M \subseteq \Omega^1_M$ satisfait $\dd \Omega^{1,0}_M \subseteq \Omega^1_M \wedge \Omega^{1,0}_M$
+\end{enumerate}
+
+\subsection{Localité de la condition d'intégrabilité}
+Les conditions ci-dessus sont locales (nullité d'un tenseur par exemple) ; ainsi si $(M,I)$ est presque complexe intégrable alors ses ouverts de cartes $(U,I_{\vert U})$ sont des sous-variétés de $\R^{2n}$ presque-complexes intégrables.
+
+De plus, si tous les $(U,I_{\vert U})$ sont effectivement des variétés complexes alors les changements de carte sont holomorphes (respectent les $I_{\vert U}$) car les $I_{\vert U}$ proviennent d'un $I$ global sur $M$ et donc $(M,I)$ est une variété complexe.
+
+\subsection{Théorème de Frobenius-Newlander-Nirenberg} La condition d'intégrabilité est satisfaite par la multiplication par $i$ sur l'espace tangent holomorphe d'une variété complexe. Le théorème suivant énonce la réciproque, il a été prouvé par Newlander et Nirenberg dans un cadre beaucoup plus large (variété moins régulière) ; alors que la version ci-dessous est une application plus simple du théorème d'intégrabilité de Frobenius.\marginpar{Ajout dates 1840 par Feodor Deahna et appliqué aux systèmes Pfaffiens par Frobenius}
+\begin{thm}[Frobenius-Newlander-Nirenberg]
+Soit $M$ variété analytique réelle de dimension $2n$, munie d'une structure presque complexe $I$ intégrable.
+
+Alors au voisinage de tout points de $M$ il existe des applications coordonnées $z_1,\cdots z_n: M \rightarrow \C$ centrées en ce points, qui induisent, pour des points distincts, des changements de cartes holomorphes, et donc une structure complexe sur $M$.
+\end{thm}
+
+De manière équivalent cela signifie que pour tout $x\in M$ il existe une application $m : \C^n \rightarrow M$ holomorphe pour la structure complexe $I$ à l'arrivée qui paramètre un voisinage de $x$.
+\subsubsection{But} On sait l'existence d'un tel $M$ par le théorème, on va donc chercher à en déterminer un développement en série entière.
+
+\section{Structure complexe donnée par des $(1,0)$-formes}
+\subsection{Cadre et notations.}
+On cherche à expliciter une application de paramétrisation $m : \C^n \rightarrow U$ qui soit holomorphe pour la structure presque complexe $I$. Le théorème de \textsc{Frobenius-Newlander-Nirenberg} assure son existence. Dans un premier temps on supposera donné en lieu et place de $I$, une base $(\omega^\alpha)_{1 \leq \alpha \leq n}$ de sections de l'espace propre pour la valeur propre $i$ de $I$ dans le complexifié du cotangent à $U$.
+On notera~:
+\begin{itemize}
+\item $i,j,k,l$ et $p,q,r,s$ deux familles d'indices variant de $1$ à $2n$, qui décrivent respectivement la source et le but.
+\item $\alpha,\beta,\gamma, \tau, \nu$ les indices variant de $1$ à $n$.
+\item $x^i$ désigneront les coordonnées réelles sur $\C^{n}$ telles que $x^\alpha + ix^{\alpha + n} = z^\alpha$ soit une coordonnée canonique $\C^n \rightarrow \C$. On utilisera les indices $i,j,k,l = 1 \cdots 2n$ ou les indices $\alpha,\beta,\cdots$ et $\alpha + n,\beta+n,\cdots$ quand il conviendra de distinguer entre les parties "réelles" et "imaginaires".
+\item $u^p$ désigneront les coordonnées locales réelles sur $U$ centrées en $0$, on utilisera $p,q,r,s = 1 \cdots 2n$ comme indices associés.
+\item $\omega^\alpha = a^\alpha_p \dd u^p$ ; on utilisera $\alpha, \beta, \gamma = 1 \cdots n$ comme indices associés.
+\end{itemize}
+On supposera en outre que $m(0)=0 \in U \subseteq \R^{2n}$.
+
+Les $z^\alpha := x^\alpha + i x^{\alpha + n}$ sont les coordonnées complexes canoniques sur $\C^n$, donc les $\dd z^\alpha$ forment une base des $(1,0)$-formes.
+
+\subsection{Développement}
+Exprimer que $m$ est holomorphe pour la structure canonique sur $\C^n$ au départ et pour la structure complexe donnée par les $\omega^\alpha$ signifie que $m^* \omega^\alpha$ est une $(1,0)$-forme donc obtenue comme combinaison (à coefficients holomorphes) des $\dd z^\alpha$. Cependant, quitte à changer la base et les omega…
+\marginpar{pourquoi on peut passer du cas $f\dd z$ à $\dd z$ ?}
+On peut supposer~:
+\[
+m^* \omega^\alpha = \dd z^\alpha
+\]
+
+Toutes les applications considérées sont analytiques, en particulier, on peut écrire leurs développements en séries entières.
+\begin{eqnarray}
+m^p(x) &=& \dpp{m^p}{x^j}x^j + \demi \dppp{m^p}{x^j}{x^k} x^j x^k + \dfrac{1}{6} \dpppp{m^p}{x^j}{x^k}{x^l}x^j x^k x^l + \cdots \\
+a_s^\alpha(u) &=& a_s^\alpha(0) + \dpp{a_s^\alpha}{u^p}u^p + \demi \dppp{a_s^\alpha}{u^p}{u^q}u^p u^q + \cdots \\
+\dpp{m^s}{x^i}(x) &=& \dpp{m^s}{x^i} + \dppp{m^s}{x^i}{x^j}x^j + \demi \dpppp{m^s}{x^i}{x^j}{x^k}x^j x^k + \cdots
+\end{eqnarray}
+
+On peut alors écrire le développement de $a^\alpha_s(m(x))$ au voisinage de $0$~:
+\begin{eqnarray*}
+a^\alpha_s(m(x)) & = & a_s^\alpha(0) \\
+				 & + &\left(\dpp{a_s^\alpha}{u^p}\dpp{m^p}{x^j}\right)x^j \\
+				 & + &\left(\demi \dpp{a_s^\alpha}{u^p}\dppp{m^p}{x^j}{x^k} + \demi \dppp{a_s^\alpha}{u^p}{u^q}\dpp{m^p}{x^j}\dpp{m^q}{x^k}\right)x^jx^k \\
+				 & + &\left(
+				 \dfrac{1}{6}\dpp{a_s^\alpha}{u^p}\dpppp{m^p}{x^j}{x^k}{x^l} + \dfrac{1}{12} \dppp{a_s^\alpha}{u^p}{u^q}			 \dpp{m^p}{x^j}\dppp{m^q}{x^k}{x^l}\right.\\
+				 &   &\left.\quad + \dfrac{1}{6} \dpppp{a_s^\alpha}{u^p}{u^q}{u^r}\dpp{m^p}{x^j}\dpp{m^q}{x^k}\dpp{m^r}{x^l}
+				\right) x^j x^k x^l \\
+				 & + &\cdots
+\end{eqnarray*}
+Donc après multiplication par $\dpp{m^s}{x^i}(x)$ on peut obtenir la décomposition suivante~:
+\begin{eqnarray*}
+\text{ordre} & & \text{coefficient} \\ 
+0 & & a_s^\alpha(0)\dpp{m^s}{x^i} \\ 
+1 & & a_s^\alpha(0)\dppp{m^s}{x^i}{x^j} + \dpp{a_s^\alpha}{u^p}\dpp{m^p}{x^j}\dpp{m^s}{x^i} \\ 
+2 & & \demi a_s^\alpha(0)\dpppp{m^s}{x^i}{x^j}{x^k} + \dpp{a_s^\alpha}{u^p}\dpp{m^p}{x^j}\dppp{m^s}{x^i}{x^k} +  \demi \dpp{a_s^\alpha}{u^p}\dppp{m^p}{x^j}{x^k}\dpp{m^s}{x^i} \\
+  & & \qquad + \demi \dppp{a_s^\alpha}{u^p}{u^q}\dpp{m^p}{x^j}\dpp{m^q}{x^k}\dpp{m^s}{x^i}
+\end{eqnarray*} 
+
+Or on veut $m^*\omega^\alpha = \dd z^\alpha = \dd x^\alpha + i \dd x^{\alpha + n}$ donc 
+\begin{eqnarray*}
+a_s^\alpha(0)\dpp{m^s}{x^i} &=& \delta_i^\alpha + i \delta_i^{\alpha+n}\\
+\text{termes d'ordre >}0 &=& 0
+\end{eqnarray*}\marginpar{pas rigoureux, écrire les changements de base}
+Mais quitte à composer $m$ à droite par un automorphisme $\C$-linéaire de $\C^n$, et prendre les coordonnées $z^\alpha$ correspondantes, on peut supposer \marginpar{En fait, très douteux ! On a $a$ qui est fixé dans les coordonnées $u_p$, a priori changer $m$ ne doit pas l'affecter}
+\[
+\dpp{m^s}{x^i} = \delta_i^s
+\]
+et par suite
+\[
+a_s^\alpha = \delta_s^\alpha + i \delta_s^{\alpha + n}
+\]
+
+Après simplification on peut donc écrire~:
+\[
+\begin{array}{cl}
+\text{ordre} & \text{coefficient} \\  
+1 & a_s^\alpha(0)\dppp{m^s}{x^i}{x^j} + \dpp{a_i^\alpha}{u^j} \\ 
+2 & \demi a_s^\alpha(0)\dpppp{m^s}{x^i}{x^j}{x^k} + \dpp{a_s^\alpha}{u^j}\dppp{m^s}{x^i}{x^k} +  \demi \dpp{a_i^\alpha}{u^p}\dppp{m^p}{x^j}{x^k} + \demi \dppp{a_i^\alpha}{u^j}{u^k}\\ 
+3 & \\
+\end{array} 
+\]
+
+\section{Structure complexe donnée par $I$}
+Dans toute cette section (et seulement celle-ci) $J$ dénotera la structure complexe canonique de $\C^n$.
+\subsection{Énoncé avec les structures complexes}
+Demander à ce que $m : \C^n \rightarrow U$ soit holomorphe revient à demander à ce qu'elle respecte les structures complexes au sens suivant~:
+\begin{equation}
+\forall X \in \Gamma(\C^n,T_\R\C_n),\quad I(m_* X) = m_*(J X)
+\label{Im-mJ}
+\end{equation}
+En effet, il est équivalent de demander que $m_*^\C : T_\R\C^n \otimes \C \rightarrow T_\R U \otimes \C$ envoie $T\C^n = T^{(1,0)}\C^n$ sur $T^{(1,0)_I}U$.
+
+\subsection{Calcul tensoriel}
+On notera $I^p_q$ et $J_j^i$ les notations tensorielles pour $I$ et $J$, dans les bases respectives $u^p$ et $x^i$. C'est-à-dire, on a~:
+\[
+J^i_j \dpp{}{x^i} = J\left(\dpp{}{x^j}\right)
+\]
+et de même pour $I$ avec les $u^p$.
+
+On peut alors écrire la condition \eqref{Im-mJ} en coordonnées pour $X = \dpp{}{x^i}$ au point $x$~:
+\[
+\dpp{m^p}{x^i}(x)I^q_p(m(x))\dpp{}{u^q}(m(x))
+= J_i^j(x) \dpp{m^p}{x^j}(x)\dpp{}{u^p}(m(x))
+\]
+Ce qui se traduit par~:
+\begin{equation*}
+J^j_i(x) \dpp{m^p}{x^j}(x) = \dpp{m^q}{x^i}(x)I^p_q(m(x))
+\end{equation*}
+Or $J$ ne dépend pas du point $x\in\C^n$ choisit (c'est dire que les coordonnées $x_i$ sont issues des coordonnées holomorphes canoniques). Ainsi pour tout $x$, $J(x) = J(0) = J$.
+
+En résumé~:
+\begin{equation}
+J^j_i \dpp{m^p}{x^j}(x) = \dpp{m^q}{x^i}(x)I^p_q(m(x))
+\end{equation}
+ou de manière équivalente (en utilisant $I^2=-1$)~:
+\begin{equation}
+J^j_i \dpp{m^q}{x^j}(x)I^p_q(m(x)) + \dpp{m^p}{x^i}(x) = 0 \label{IJ2}
+\end{equation}
+Ce qui s'écrit matriciellement $J Dm I = -Dm$ ou $J Dm = Dm I$.
+
+\subsection{À l'ordre $0$ et hypothèses}
+On peut de plus choisir les coordonnées $(u^j)$ sur $U$ telles que $I_p^q(0)$ soit la matrice symplectique canonique $J$
+\[
+\begin{pmatrix}
+0 & -I_n \\ 
+I_n & 0
+\end{pmatrix}
+\]
+Dès lors, à l'ordre $0$, l'équation \eqref{IJ2} signifie que $Dm(0)$ est un endomorphisme complexe au sens où il provient d'un élément de $\Mm_n(\C)$ vu dans $\Mm_{2n}(\R)$. Ainsi par changement $\C$-linéaire de coordonnées sur $\C^n$ (les $x^i$), on peut imposer $Dm = I_{2n} : \C^n \rightarrow \R^{2n}$.
+
+\begin{eqnarray*}
+I^p_q(m(x)) & = & I^p_q(0) \\
+			& + & \left(\dpp{I^p_q}{u^r}\dpp{m^r}{x^i}\right)x^i \\
+			& + & \left(\demi \dpp{I^p_q}{u^r}\dppp{m^r}{x^i}{x^j}
+					+ \demi \dppp{I^p_q}{u^r}{u^l}\dpp{m^r}{x^i}\dpp{m^l}{x^j}\right)x^ix^j \\
+			& + & \dots\\
+			& = & J^p_q \\
+			& + & \dpp{I^p_q}{u^i}x^i \\
+			& + & \left(\demi \dpp{I^p_q}{u^r}\dppp{m^r}{x^i}{x^j}
+					+ \demi \dppp{I^p_q}{u^i}{u^j}\right)x^ix^j \\
+			& + & \dots\\
+\dpp{m^p}{x^i} 
+			& = & \delta^p_i + \dppp{m^p}{x^i}{x^j}x^j + \demi \dpppp{m^p}{x^i}{x^j}{x^k}x^jx^k + \dots
+\end{eqnarray*}
+
+\subsection{Aux ordres supérieurs}
+
+On peut développer le produit $JDm(x)I(m(x))$
+\[
+J^j_i
+\left(
+\delta^q_j + \dppp{m^q}{x^j}{x^k}x^k + \demi \dpppp{m^p}{x^i}{x^j}{x^k}x^jx^k +\cdots
+\right)
+\left(
+J^p_q + \dpp{I^p_q}{u^k}x^k + \demi\left( \dpp{I^p_q}{u^r}\dppp{m^r}{x^j}{x^k} +\dppp{I^p_q}{u^j}{u^k}\right)x^jx^k +\cdots
+\right)
+\]
+On peut alors déterminer le développement de $m$ à tous les ordres~:
+\[
+\begin{array}{cl}
+\text{ordre} & \text{\'equation} \\  
+1 & \dppp{m^p}{x^i}{x^k} + J^j_i\dppp{m^q}{x^j}{x^k}J^p_q = - J^q_i\dpp{I^p_q}{u^k}
+\\
+2 & 
+\dpppp{m^p}{x^i}{x^j}{x^k} + \demi J^i_l \dpppp{m^q}{x^l}{x^k}{x^j}J^p_q = -J_i^l\left(
+\dppp{m^q}{x^l}{x^k}\dpp{I^p_q}{u^j} + \demi \delta_l^q \left( 
+\dppp{I^p_q}{u^j}{u^k} + \dpp{I^p_q}{u^t}\dppp{m^t}{x^j}{x^k}
+\right)
+\right)
+\\ 
+3 & \\
+\end{array} 
+\]
+
+\subsubsection*{Système sous forme résolue ?}
+On se convainc facilement qu'à tout ordre l'équation sera de la forme
+\[
+\dpp{D^dm^p}{x^i} + J^i_j \lambda \dpp{D^dm^q}{x^j} J^p_q = H
+\]
+avec $H$ ne dépendant que des dérivées à l'ordre $d$ de $m$ et des dérivées de $I$.
+
+Un tel système n'est pas bien posé !
+
+En effet, dans le cas de l'ordre $1$ par exemple. L'équation matricielle $JX-XJ=Y$ n'a pas unicité de la solution si elle existe. L'existence est conditionnée au fait que $Y$ soit de cette forme
+\[
+Y = \begin{pmatrix}
+U & V \\ 
+V & -U
+\end{pmatrix}
+\]
+Dès lors si
+\[
+X = \begin{pmatrix}
+A & B \\ 
+C & D
+\end{pmatrix} \]
+l'équation revient à~:
+\begin{eqnarray*}
+D-A & = & V\\
+B+C & = & U
+\end{eqnarray*}
+Donc $X$ est déterminée à une matrice de la forme $R Id + S J$ près.
+
+\section{Application à l'espace des twisteurs}
+\subsection{Notations}
+\cite{Hitchin-Karlhede} Le but de cette partie est d'appliquer les résultats précédents à $M=Z$ l'espace des twisteurs d'une variété hyperkählérienne $(X,(I,J,K),g)$ que l'on supposera construite à partir d'une variété symplectique holomorphe $(X,I,\omega)$. $Z$ est de dimension réelle $\dim_\R(X)+2 = 4n+2$. On notera $N = 2n+1$, ainsi $\dim_\R(Z) = 2N$.
+
+La structure presque-complexe $\mathbb{I}$ sur $Z = X \times \Pro^1$ est donnée par~:
+\[
+\mathbb{I} = \left(
+\dfrac{1-\zeta \bar{\zeta}}{1+\zeta \bar{\zeta}}I + \dfrac{\zeta + \bar{\zeta}}{1+\zeta \bar{\zeta}}J + \dfrac{i(\zeta - \bar{\zeta})}{1+\zeta \bar{\zeta}}K \; , \; I_0
+\right)
+\]
+
+\subsection{Les structures complexes $J$ et $K$ sur $X$}
+Les trois structures complexes $I,J,K$ d'une variété hyperkählérienne pointée, doivent satisfaire les relations "quaternioniques". En particulier $K = IJ$ et $IJ = -JI$.
+
+On cherche donc sur $(X,I)$ une structure complexe $J$ satisfaisant la dernière relation.
+
+Sur un ouvert $U$ de $X$ on a des coordonnées complexes $z^\tau$ qui se décomposent en $4n$ coordonnées réelles $u^p$ (par exemple $z^\tau = u^\tau + i u^{\tau+n}$) qui induisent une trivialisation locale du fibré tangent \[
+T(X_\text{diff})_{\vert U} \cong \bigoplus_p \R \dpp{}{u^p}
+\]
+Dans cette base la structure $I$ est donnée par la matrice
+\[
+\begin{pmatrix}
+0 & -I_{2n} \\ 
+I_{2n} & 0
+\end{pmatrix} 
+\]
+On va chercher $J$ parmi les matrices qui vérifient $IJ=-JI$ et qui satisfont \marginpar{Justifier ce choix}
+\begin{equation}\label{symplecticJ}
+\omega(X,Y) = g(JX,Y) + ig(IJX,Y) = g^\C((1+iI)JX,Y)
+\end{equation}
+où $\omega$ est la forme symplectique sur $(X,I)$ et $g$ est la métrique Ricci-plate obtenue par le théorème de Yau.
+On développe en notation tensorielle~:
+\begin{eqnarray*}
+g & = & g_{pq} \dd u^p \dd u^q \\
+\omega & = & \omega_{pq} \dd u^p \wedge \dd u^q \\
+J\dpp{}{u^p} & = & J^q_p\dpp{}{u^q}\\
+I\dpp{}{u^p} & = & I^q_p\dpp{}{u^q}\\
+\end{eqnarray*}
+On peut alors faire le calcul en évaluant dans \eqref{symplecticJ} par $X = \partial_{u^p}$ et $Y = \partial_{u^q}$.
+\[
+\omega_{pq} = g^\C\left((1+iI)J^r_p\dpp{}{u^r},\dpp{}{u^q}\right)
+=g^\C\left(
+(\delta_p^k+iI_p^k)J^l_k\dpp{}{u^l},\dpp{}{u^q}
+\right)
+\]
+Or $g^\C$ est tensoriel, donc on peut écrire
+\[
+\omega_{pq}
+=(\delta_p^r+iI_p^r) J^k_r g^\C\left(\dpp{}{u^k},\dpp{}{u^q}
+\right) = (\delta_p^r+iI_p^r)J^k_r g_{kq}
+\]
+Ce qui donne finalement en inversant $g$ et en utilisant le fait que $IJ=-JI$~:
+\begin{equation}\label{eqJ}
+\omega_{pr}g^{rq} = J_p^k\left(\delta_k^q - i I_k^q\right)
+\end{equation}
+
+L'équation \eqref{eqJ} nous donne immédiatement que $J$ est définie à une matrice de la forme $M(1+iI)$ près, en effet
+\[
+(J+M(1+iI))(1-iI) = J(1-iI) + M(1+iI)(1-iI) = J(1-iI)
+\]
+Cependant comme $\omega$ et $(1+iI)$ sont à coefficients complexes, les solutions $J$ sont a priori également complexes, cependant on peut remarquer que si $J = J_1 + iJ_2$ est la décomposition d'une solution $J$ en partie réelle et imaginaire, alors $J' = J_1 + J_2I$ est également solution, réelle cette fois-ci.
+Et dès lors la solution réelle est unique !\marginpar{weird !} En effet, le choix de $M$ dans l'équation ci-dessus tel que $J$ reste réel impose nécessairement $M=0$.
+
+En notant $A$ la matrice des $A_p^q := \omega_{pr}g^{rq}$, on a
+\[
+J = \Re(A) \quad \text{ ie } \quad J_p^q = \Re(A_p^q) = \Re(\omega_{pr}g^{rq})
+\]
+
+\subsection{Structure complexe sur l'espace des twisteurs}
+En regroupant ce qu'on a obtenu, on peut écrire $\mathbb{I}$ de la façon suivante~:
+\[
+\left(1+\zeta \bar{\zeta}\right)\mathbb{I}_p^q = \left(1-\zeta \bar{\zeta}\right)I_p^q + \left(\zeta + \bar{\zeta}\right)\Re(\omega_{pr}g^{rq}) + i\left(\zeta - \bar{\zeta}\right)I_p^r\Re(\omega_{rk}g^{kq})
+\]
+pour $p$ et $q$ compris entre $1$ et $4n$. Il reste les valeurs $\mathbb{I}_u^v$ pour $u$ ou $v$ compris entre $4n+1$ et $4n+2$, qui proviennent de la structure sur $\Pro^1$.
+
+Donc la structure complexe $\mathbb{I}$ est la partie réelle du tenseur suivant que l'on notera $\Upsilon$
+\[
+\Upsilon_p^q = 
+\dfrac{1-|u^{4n+1}|^2-|u^{4n+2}|^2}{1+|\zeta|^2}
+I_p^q
++
+\dfrac{2u^{4n+1}}{1+|\zeta|^2}
+A_p^q
+-
+\dfrac{2u^{4n+2}}{1+|\zeta|^2}
+I_p^rA_r^q
+\]
+où $A_p^q = \omega_{pr}g^{rq}$ et $\zeta = u^{4n+1}+iu^{4n+2}$.
+\marginpar{A FINIR une fois qu'on aura les expressions des dérivées de $m$}
+\todo{}
+
+\subsection{$1$-formes holomorphes sur l'espace des twisteurs}
+Avec le résultat sur les structures complexes $J_p^q = \Re(A_p^q) = \Re(\omega_{pr}g^{rq})$, on peut exprimer les $(1,0)$-formes pour $\mathbb{I}$ données dans \cite{Hitchin-Karlhede}~:
+\[
+\varphi + \zeta K\varphi = \left( 
+\varphi^i + \zeta \Re(I_j^i A_k^j)\varphi^k
+\right)_i
+\]
+On a donc pour $\varphi^p = \dd u^p$, $a_r^p = \delta_r^p + \zeta I_q^p\Re(A_r^q)$.
+
+\appendix
+\section[Intégrabilité de la structure presque complexe sur $Z$]{Intégrabilité de la structure presque complexe sur l'espace des twisteurs}
+Le tenseur de \textsc{Nijenhuis} d'une structure presque complexe $I$ est défini par~:
+\[
+N_I(X,Y) = [ I X , I Y ] - I [ X , I Y ] - I [ I X , Y ] - [ X , Y ]
+\]
+Ce qui donne en coordonnées
+\[
+N_{pq}^l = I_p^r \dpp{I_q^l}{u^r} - I_q^r \dpp{I_p^l}{u^r} - I_r^l\left( \dpp{I^r_q}{u^p} - \dpp{I^r_p}{u^q}
+\right)
+\]
+\todo{Exprimer l'intégrabilité de $\mathbb{I}$ à l'aide du tenseur de Nijenhuis. Ça devrait ressembler au calcul dans \cite{Hitchin-Karlhede} pour les $1$-formes}
+
+%\nocite{*}
+\bibliographystyle{amsalpha}
+\bibliography{./Integrability_of_cmplx_structures}
+
+\end{document}

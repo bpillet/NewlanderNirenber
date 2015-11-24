@@ -1,0 +1,92 @@
+\documentclass[a4paper]{article}
+\usepackage[thm]{dipneuste}
+
+\begin{document}
+\paragraph{Introduction} Soit $\omega$ une $1$-forme et $X$ un champ de vecteur sur $M$ variété différentiable de dimension $n$.
+
+On note $\varphi_t : M \rightarrow M$ l'application exponentielle associée au champ $tX$, on supposera (quitte à remplacer $M$) qu'elle est définie pour tout $t$.
+Elle satisfait l'équation différentielle~:
+\[
+\left\lbrace
+\begin{array}{c}
+\dpp{\varphi_t}{t}|_{t=t_0}  = X \circ \varphi_{t_0} \\ 
+\varphi_0 = id_M
+\end{array} \right.
+\]
+
+On s'intéresse à la forme $\omega_t = \varphi^*_t \omega$.
+
+On sait que 
+\[
+\dpp{(\varphi_t^* \omega)}{t}|_{t=t_0} = \lim_{t \rightarrow t_0} \dfrac{\varphi^*_t \omega - \varphi^*_{t_0} \omega}{t} 
+= \lim_{s \rightarrow 0} \dfrac{\varphi^*_s \omega_{t_0} - \omega_{t_0}}{t}
+= L_X \omega_{t_0} = (\dd \omega_{t_0})(X) + \dd (\omega_{t_0}(X))
+\]
+En particulier pour $Y$ champ de vecteur sur $M$ on a~:
+\[
+\dpp{(\varphi_t^* \omega)}{t}|_{t=t_0} (Y) = (L_X \omega_{t_0}) (Y) = X(\omega_{t_0}(Y)) - \omega_{t_0}([X,Y])
+\]
+
+\paragraph{Orthogonalité.} On suppose désormais que $\omega(X)=0$, alors on peut faire le calcul ainsi~:
+\[
+\dpp{(\varphi_t^* \omega)}{t}|_{t=t_0} = \lim_{t \rightarrow t_0} \dfrac{\varphi^*_t \omega - \varphi^*_{t_0} \omega}{t} 
+= \varphi^*_{t_0}\left(\lim_{s \rightarrow 0} \dfrac{\varphi^*_s \omega - \omega}{t}\right)
+= \varphi^*_{t_0}L_X \omega = \varphi^*_{t_0}((\dd \omega)X)
+\]
+Or on sait que pour $\Phi$ un difféomorphisme $\Phi^*(\alpha Y) = \Phi^*(\alpha)(\Phi_* Y)$ où $\Phi_* Y = D\Phi^{-1} Y \circ \Phi$. Et de plus $\varphi_t$ vérifie la relation~: $(\varphi_{t})_*X = X$. On peut donc écrire~:
+\[
+\dpp{\omega_t}{t} = (\dd \omega_{t}) (\varphi_{t})_*X = (\dd \omega_t) X
+\]
+
+
+\paragraph{Intégrabilité} Supposons maintenant que $X$ et $Y$ satisfassent $\omega(X) = \omega(Y) = 0$, et que $\omega$ soit intégrable ($\omega \wedge \dd \omega = 0$), alors on peut observer~:
+\[
+(\dd \omega)(X,Y) = \dd (\omega(X))(Y) - \dd (\omega(Y))(X) - \omega([X,Y]) = - \omega([X,Y])
+\]
+Or par hypothèse d'intégrabilité $\omega$ divise $\dd \omega$ donc cette dernière s'annule en $(X,Y)$ d'où $\omega$ s'annule en $[X,Y]$.
+
+Sous ces hypothèses on a alors~:
+\[
+\dpp{\omega_t}{t}|_{t=0} (Y) = X(\omega(Y)) - \omega([X,Y]) = 0
+\]
+
+\paragraph{Intégrabilité 2} Supposons $\omega(X) = 0$ et $\dd \omega = \omega \wedge \theta$. Alors~:
+\[
+\dpp{\omega_t}{t} = (\dd \omega_t) X = (\omega_t \wedge \theta_t) X = \omega_t(X) \theta_t - \theta_t(X) \omega_t
+= - \theta_t(X) \omega_t = -(\theta(X) \circ \varphi_t) \omega_t
+\]
+En effet $\omega_t(X) = \varphi_t^*(\omega(\varphi_{-t})_* X) = \varphi_t^* (\omega X) = 0$.
+
+Donc $\omega_t$ est solution de l'équation différentielle
+\[
+\left\lbrace
+\begin{array}{ccc}
+ \dpp{\omega_t}{t} &=&- (\theta(X))_t \omega_t  \\ 
+ \omega_0 &=& \omega
+\end{array} 
+\right.
+\]
+
+\paragraph{Schéma de preuve du théorème de Frobenius en codimension $1$} On prend $(x^1, \cdots x^n)$ des coordonnées, on a donc $\dpp{}{x^i}$ une base locale du fibré tangent. On cherche un difféomorphisme $\Phi$ tel que~:
+\[
+(\Phi^*\omega)\left(\dpp{}{x^i}\right) = 0 \quad \forall i > 2
+\]
+donc $\Phi^*\omega = f \dd x^1$ et ainsi~:
+\[
+\omega = (f \circ \Phi^{-1}) \dd \left( x^1 \circ \Phi^{-1}\right)
+\]
+
+\paragraph{Version "formes"}
+Soit $\omega$ une $1$-forme intégrable ($\omega \wedge \dd \omega = 0$). Soit $(x^1,\cdots, x^n)$ une carte locale telle que $\omega \wedge \dd x^2 \wedge \dd x^3 \wedge \cdots \wedge \dd x^n \neq 0$.
+
+On cherche un difféomorphisme local $\Phi$ tel que~:
+\[
+\left\lbrace
+\begin{array}{cc}
+ \omega \wedge \Phi^*\eta_1 \neq 0 &  \\ 
+ \omega \wedge \Phi^*\eta_i = 0  & \forall i > 1
+\end{array} 
+\right. \qquad \text{ où } \quad \eta_i = \dd x^1 \wedge \cdots \wedge \dd \check{x^i} \wedge \cdots \wedge \dd x^n
+\]
+
+\end{document}

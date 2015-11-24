@@ -1,0 +1,30 @@
+--2015-02-03 10:01:01--  http://perso.univ-rennes1.fr/basile.pillet/LaTeX/dipneuste.sty
+Résolution de perso.univ-rennes1.fr (perso.univ-rennes1.fr)... 129.20.131.149
+Connexion vers perso.univ-rennes1.fr (perso.univ-rennes1.fr)|129.20.131.149|:80... connecté.
+requête HTTP transmise, en attente de la réponse... 200 OK
+Taille : 7006 (6,8K) [text/plain]
+Le fichier distant est plus récent, récupération.
+
+--2015-02-03 10:01:01--  http://perso.univ-rennes1.fr/basile.pillet/LaTeX/dipneuste.sty
+Connexion vers perso.univ-rennes1.fr (perso.univ-rennes1.fr)|129.20.131.149|:80... connecté.
+requête HTTP transmise, en attente de la réponse... 200 OK
+Taille : 7006 (6,8K) [text/plain]
+Enregistre : «dipneuste.sty»
+
+     0K ......                                                100% 17,2M=0s
+
+2015-02-03 10:01:01 (17,2 MB/s) - «dipneuste.sty» enregistré [7006/7006]
+
+--2015-02-03 10:01:01--  http://perso.univ-rennes1.fr/basile.pillet/LaTeX/amsdip.sty
+Connexion vers perso.univ-rennes1.fr (perso.univ-rennes1.fr)|129.20.131.149|:80... connecté.
+requête HTTP transmise, en attente de la réponse... 200 OK
+Taille : 6932 (6,8K) [text/plain]
+Enregistre : «amsdip.sty»
+
+     0K ......                                                100% 15,1M=0s
+
+2015-02-03 10:01:01 (15,1 MB/s) - «amsdip.sty» enregistré [6932/6932]
+
+Terminé — 2015-02-03 10:01:01 —
+Temps total effectif : 0,04s
+Téléchargés : 2 fichiers, 14K en 0,001s (16,1 MB/s)
